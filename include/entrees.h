@@ -1,0 +1,3 @@
+/*
+ * librairie entrees.h
+ */
