@@ -51,7 +51,6 @@
     * OU le temps par un changement de couleur
 
 
-
 #### A faire - 16/11
 
 * Sections Librairies (4 sections)
