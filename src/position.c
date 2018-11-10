@@ -6,9 +6,9 @@
 
 void new_coord(Coordonnees *point, float dt){
 	//Sauvegarde des anciennes coordonées
-	float x=point->x;
-	float y=point->y;
-	float z=point->z;
+	float x = point->x;
+	float y = point->y;
+	float z = point->z;
 
 	//Calcul des nouvelles coordonées	
 	point->x = S*(y-x);
