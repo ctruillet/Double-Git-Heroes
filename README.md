@@ -14,13 +14,12 @@
 
 * Entrées
 
+  * Demande de la position initiale ([x], [y], [z] et [Tmax])
+  
   * Demande des parametres ([σ],[β] et [ρ] ecrit respectivement [S], [B] et [P]).
 
-  * Demande de la position initiale ([x], [y], [z] et [Tmax])
-
   * Demande de la MàJ de la vitesse ([dt])
-
-  * Demande de la définition des parametres (vie la notation polonaise inversée)
+  
 
 * Position
 
@@ -29,31 +28,34 @@
   * Initialisation de la position
 
   * Calcul de la nouvelle position en fonction des coordonées, dt et des parametres
+  
 
-* Fichier
+* Fichier - position.txt
 
-  * Initialisation du fichier BdD 
+  * Initialisation du fichier (mode [w+]) 
 
   * Ouverture (mode [a]) et ecriture de la position en format [temps x y z]
 
   * Ouverture (mode [r]) et lecture des positions
+  
+  
+* Log - .log
+  
+  * Initialisation d'un nouveau fichier .log (mode [w+]) (name : TIME.log)
+  
+  * Ouverture (mode [a]) et ecriture du log
+  
 
 * Gnuplot
 
   * Tracer la courbe
 
-  * Afficher
-
-    * OU la vitesse par des vecteurs
-
-    * OU la vitesse par une couleur
-
-    * OU le temps par un changement de couleur
+  * Afficher le temps par un changement de couleur (dégradé temporel )
 
 
 #### A faire - 16/11
 
-* Sections Librairies (4 sections)
+* Sections Librairies (5 sections)
 
   * Fonction
 
