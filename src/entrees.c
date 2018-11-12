@@ -27,4 +27,4 @@
 	  scanf("%f",dt);
  }
  
- //reste à vérifier qu'il s'agit bien d'un nombre
+ //reste à vérifier qu'il s'agit bien d'un nombre et appeler 2*log

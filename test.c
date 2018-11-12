@@ -5,8 +5,6 @@ void lol(int *a){
 }	
 	
 int main(int argc, char*argv[]){
-	int a=32;
-	lol(&a);
-	printf("%d\n",a);
+	touch test.txt;
 	return 0;
 }

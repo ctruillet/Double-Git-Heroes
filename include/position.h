@@ -9,4 +9,4 @@ typedef struct{
 	float z;
 } Coordonnees;
 
-void new_coord(Coordonnees *point, float dt){
+void new_coord(Coordonnees *point, float dt);

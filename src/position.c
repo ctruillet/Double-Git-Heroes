@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include "position.h"
-#define B 8/3
-#define P 28
-#define S 10
+
 
 void new_coord(Coordonnees *point, float dt){
 	//Sauvegarde des anciennes coordonées
