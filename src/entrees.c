@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "entrees.h"
-#include "position.h"
+#include "include/entrees.h"
+#include "include/position.h"
 
 
  void init_position(Coordonnees *point, float *Tmax){

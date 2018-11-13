@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "position.h"
+#include "include/position.h"
 
 
 void new_coord(Coordonnees *point, float dt){

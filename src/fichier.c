@@ -1,5 +1,7 @@
 #include <stdio.h>
-#include "fichier.h"
+#include "include/fichier.h"
+#include "include/position.h"
+
 
 void init_fichier(){
 	FILE* pos=NULL;
@@ -7,8 +9,11 @@ void init_fichier(){
 	fclose(pos);
 }
 
-void w_fichier(Coordonnees * point){
+void w_fichier(Coordonnees *point){
 	FILE* pos= NULL;
 	pos= fopen("position.txt","a");
-	// tester si l'ouverture à réussi sinon ->log
-	
+	if(pos!=NULL){
+		fscanf(pos, "%f %f %f",point->x);
+	}
+	fclose(pos);
+}
