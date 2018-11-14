@@ -1,2 +1,3 @@
 #include <stdio.h>
-#include "fichier.h"
+#include "../include/fichier.h"
+#include "../include/log.h"

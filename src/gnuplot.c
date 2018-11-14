@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../include/log.h"
+#include "../include/gnuplot.h"
 
 /*
 	Cette librairie appelle le fichier lorentz.sh qui lance gnuplot avec les bons parametres.

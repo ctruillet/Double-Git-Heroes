@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "position.h"
+#include "../include/position.h"
+#include "../include/log.h"
 #define B 8/3
 #define P 28
 #define S 10

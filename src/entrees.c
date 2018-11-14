@@ -1,2 +1,3 @@
 #include <stdio.h>
-#include "entrees.h"
+#include "../include/entrees.h"
+#include "../include/log.h"
