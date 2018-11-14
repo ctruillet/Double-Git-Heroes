@@ -1,5 +1,6 @@
 set parametric
-set title textcolor "red" "Equations de lorentz"
+set title textcolor "red" "Equations de Lorentz"
+set grid
 set xlabel "x"
 set ylabel "y"
 set zlabel offset +5 +4 "z"
