@@ -6,8 +6,8 @@
 	#include "position.h"
 #endif
 	
+//Vider le fichier si il existe déjà, sinon, le vider	
  void init_fichier(const char * FICHIER, char * LOG);
  
- int w_fichier(const char * FICHIER, Coordonnees * point);
- 
- int w_fichier_test(FILE* fichier, Coordonnees * point);
+ //Ecrire dans le fichier DATA
+ int w_fichier(FILE* fichier, Coordonnees * point);

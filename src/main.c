@@ -54,10 +54,12 @@ int main(int argc, char *argv[]){
 	fichier = fopen(DATA,"a"); //Ouverture en mode ajout
 
 	if (fichier != NULL){ // On peut lire et écrire dans le fichier
+	
+		w_fichier(fichier, &point); //On ecrit la position à t = 0
 		
 		while (point.t <= Tmax){  
 			position_next(&point, dt, B, P, S);
-			w_fichier_test(fichier, &point);
+			w_fichier(fichier, &point);
 		}
 		fclose(fichier);
 	}
