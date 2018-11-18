@@ -18,6 +18,9 @@ void crea_log(char * FICHIER){
   FILE* fichier = NULL;
   fichier = fopen(FICHIER,"w+");
   fclose(fichier);
+  
+  //Ecriture dans log
+  w_log(FICHIER,"Création du fichier .log");
 
 }
 
