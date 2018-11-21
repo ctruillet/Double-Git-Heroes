@@ -11,7 +11,7 @@
 int main(int argc, char *argv[]){
 	//Déclaration des variables
 	char LOG[128]; 								//Nom du fichier .log 
-	const char DATA[128] = "./data/lorentz.dat"	;	//Nom du fichier contenant les positions
+	const char DATA[128] = "../data/lorentz.dat"	;	//Nom du fichier contenant les positions
 	
 	float Tmax = 20; 	//Valeur min = 0, Valeur max = 40
 	float dt = 0.005;	//Valeur min = 0.005 , Valeur max = 5

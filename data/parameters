@@ -4,7 +4,7 @@ set grid
 set xlabel "x"
 set ylabel "y"
 set zlabel offset +5 +4 "z"
-splot "./data/lorentz.dat" u 2:3:4
+splot "../data/lorentz.dat" u 2:3:4
 pause -1 "Tapez \"Entrez\" pour fermer la fenetre"
 
 
