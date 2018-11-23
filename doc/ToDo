@@ -1,6 +1,6 @@
 ToDO :
 	* Faire la librairie entrées
-		* Proposer plusieurs modes
+		* Proposer plusieurs modes (vie enum - machine a état)
 			* Défaut
 				* Lorentz
 				* Autres (à chercher)
@@ -9,6 +9,8 @@ ToDO :
 				* A reflechir un truc rigolo
 		* Faire un style sympa
 		* https://openclassrooms.com/fr/courses/19980-apprenez-a-programmer-en-c/16993-la-saisie-de-texte-securisee
-		
-		
-	* Finir ce projet pour passer à Vroum
+	* Librairie Position
+		* Faire des getters et setters 
+		* Bouger la definition de la structure vers le .c
+	* Faire un .a ?
+		ar rcs lorentz.a fichier.o log.o ...
