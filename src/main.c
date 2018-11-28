@@ -20,11 +20,7 @@ int main(int argc, char *argv[]){
 	float S = 10;		//Valeur par défaut : 10
 	
 	Coord point = new_coord(0, 1, 2, 3);
-	
-	// TEST
-	// Coordonnees point;  
-	// new_coord(&point, 0, 1, 2, 3);
-	
+
 	
 	/*Initialisation
 	* 	Création du fichier .log
@@ -63,9 +59,6 @@ int main(int argc, char *argv[]){
 		while (get_t(point) <= Tmax){
 			point = position_next(point, dt, B, P, S);
 			w_fichier(fichier, point);
-			
-			// position_next(&point, dt, B, P, S);
-			// w_fichier(fichier, &point);
 		}
 		fclose(fichier);
 	}

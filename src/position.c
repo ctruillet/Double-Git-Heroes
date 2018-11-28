@@ -3,8 +3,6 @@
 #include "../include/position.h"
 #include "../include/log.h"
 
-// TEST
-
 //Structure de la position
 typedef struct Coord{
 	float t; //temps
@@ -13,22 +11,27 @@ typedef struct Coord{
 	float z;
 } Coordonnees_s;
 
+//Recupere la valeur de x de la position
 float get_x (Coord position){
 	return position->x;
 }
 
+//Recupere la valeur de y de la position
 float get_y (Coord position){
 	return position->y;
 }
 
+//Recupere la valeur de z de la position
 float get_z(Coord position){
 	return position->z;
 }
 
+//Recupere la valeur de temps de la position
 float get_t (Coord position){
 	return position->t;
 }
 
+//Création d'une nouvelle coordonnees
 Coord new_coord(float t, float x, float y, float z){
 	Coord position;
 	position = (Coord)malloc(sizeof(Coordonnees_s));
@@ -41,6 +44,7 @@ Coord new_coord(float t, float x, float y, float z){
 	return position;
 }
 
+//Calcul de la nouvelle position
 Coord position_next(Coord point, float dt, float B, float P, float S){
 	//Calcul des nouvelles coordonnees
 	float new_x = get_x(point) + (S * (get_y(point) - get_x(point) ) ) * dt;
@@ -54,30 +58,3 @@ Coord position_next(Coord point, float dt, float B, float P, float S){
 	return point;
 
 }
-
-//FIN TEST
-
-
-
-// //Fonction qui lui associe à la structure Coordonnees les valeurs pour x, y, z et t
-// void new_coord(Coordonnees * point, float t, float x, float y, float z){
-	// point->t = t;
-	// point->x = x;
-	// point->y = y;
-	// point->z = z;
-
-// }
-
-// void position_next(Coordonnees * point, float dt, float B, float P, float S){
-	// //Sauvegarde des anciennes coordonées
-	// float x = point->x;
-	// float y = point->y;
-	// float z = point->z;
-
-	// //Calcul des nouvelles coordonées	
-	// point->x += (S*(y-x)) * dt;
-	// point->y += (x*(P-z)-y) * dt;
-	// point->z += (x*y - B*z) * dt;
-	// point->t += dt;
-
-// }
