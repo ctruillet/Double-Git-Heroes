@@ -8,27 +8,23 @@ void lol(int *a){
 	
 void init_fichier(){
 	FILE* pos=NULL;
-	pos = fopen("position.txt", "w+");
-	fclose(pos);
-}	
+	pos = fopen("Lorentz.dat", "w+");
+	fclose(pos);// mettre à la fin du main
+}
 
 void w_fichier(Coordonnees *point){
 	FILE* pos= NULL;
-	pos= fopen("position.txt","a");
+	pos= fopen("Lorentz.dat","a");
 	if(pos!=NULL){
-		//fprintf(pos, "%f\n%f\n%f\n%f\n",point->t,point->x,point->y,point->z);
-		fprintf(pos, "%f",point->t);
-		fprintf(pos, "%f",point->x);
-		fprintf(pos, "%f",point->y);
-		fprintf(pos, "%f",point->z);
+		fprintf(pos, "%f\n%f\n%f\n",point->x, point->y, point->z);
 	}
-	fclose(pos);
+	fclose(pos);// mettre à la fin du main
 }
 
 int main(int argc, char*argv[]){
-	init_fichier();
-	Coordonnees point={0, 3, 2, 1};
-	w_fichier(&point);
+	int c;
+	lol(&c);
+	printf("%d",lol(&c));
 	return 0;
 }
 //fksjfskfjsek

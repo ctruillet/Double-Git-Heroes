@@ -6,3 +6,5 @@
  void init_fichier();
  
  void w_fichier(Coordonnees *point);
+ 
+ void ​read_fichier​(​Coordonnees​ * point, ​float ​temps); 

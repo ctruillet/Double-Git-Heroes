@@ -1,6 +1,13 @@
 #include <stdio.h>
-#include "include/position.h"
+#include "../include/position.h"
 
+
+/*typedef struct{
+	float t;
+	float x;
+	float y;
+	float z;
+} Coordonnees;*/
 
 void new_coord(Coordonnees *point, float dt){
 	//Sauvegarde des anciennes coordonées
@@ -9,8 +16,8 @@ void new_coord(Coordonnees *point, float dt){
 	float z=point->z;
 
 	//Calcul des nouvelles coordonées	
-	point->x = S*(y-x);
-	point->y = x*(P-z)-y;
-	point->z = x*y - B*z;
+	point->x += (S*(y-x))*dt;
+	point->y += (x*(P-z)-y)*dt;
+	point->z += (x*y - B*z)*dt;
 	point->t += dt;
 }
