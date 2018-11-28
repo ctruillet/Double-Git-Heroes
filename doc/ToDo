@@ -9,8 +9,20 @@ ToDO :
 				* A reflechir un truc rigolo
 		* Faire un style sympa
 		* https://openclassrooms.com/fr/courses/19980-apprenez-a-programmer-en-c/16993-la-saisie-de-texte-securisee
-	* Librairie Position
-		* Faire des getters et setters 
-		* Bouger la definition de la structure vers le .c
 	* Faire un .a ?
 		ar rcs lorentz.a fichier.o log.o ...
+	
+	
+	
+	
+==========================================
+=================PROJET===================	
+==========================================
+
+Akory, bienvenue sur le projet trop stylé
+
+Choisisiez votre mode
+
+0 : Lorentz par défaut
+1 : Lorentz personalisé
+2 : 

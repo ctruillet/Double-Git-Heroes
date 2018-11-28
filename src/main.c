@@ -19,8 +19,11 @@ int main(int argc, char *argv[]){
 	float P = 28;		//Valeur par défaut : 28
 	float S = 10;		//Valeur par défaut : 10
 	
-	Coordonnees point;  
-	new_coord(&point, 0, 1, 2, 3);
+	Coord point = new_coord(0, 1, 2, 3);
+	
+	// TEST
+	// Coordonnees point;  
+	// new_coord(&point, 0, 1, 2, 3);
 	
 	
 	/*Initialisation
@@ -55,11 +58,14 @@ int main(int argc, char *argv[]){
 
 	if (fichier != NULL){ // On peut lire et écrire dans le fichier
 	
-		w_fichier(fichier, &point); //On ecrit la position à t = 0
+		w_fichier(fichier, point); //On ecrit la position à t = 0
 		
-		while (point.t <= Tmax){  
-			position_next(&point, dt, B, P, S);
-			w_fichier(fichier, &point);
+		while (get_t(point) <= Tmax){
+			point = position_next(point, dt, B, P, S);
+			w_fichier(fichier, point);
+			
+			// position_next(&point, dt, B, P, S);
+			// w_fichier(fichier, &point);
 		}
 		fclose(fichier);
 	}
