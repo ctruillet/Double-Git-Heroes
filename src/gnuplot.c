@@ -11,5 +11,5 @@ void trace_courbe(char * FICHIER, char * LOG){
 	
 	w_log(LOG, "Ouverture de Gnuplot.");
 	
-	system("./lorentz.sh");
+	system("./lorenz.sh");
 }

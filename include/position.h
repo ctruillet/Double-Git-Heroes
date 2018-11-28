@@ -25,4 +25,4 @@ float get_t (Coord position);
 Coord new_coord(float t, float x, float y, float z);
 
 //Calcul de la nouvelle position
-Coord position_next(Coord point, float dt, float B, float P, float S);
+Coord position_next_lorenz(Coord point, float dt, float B, float P, float S);

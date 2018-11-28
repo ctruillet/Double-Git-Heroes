@@ -45,11 +45,11 @@ Coord new_coord(float t, float x, float y, float z){
 }
 
 //Calcul de la nouvelle position
-Coord position_next(Coord point, float dt, float B, float P, float S){
+Coord position_next_lorenz(Coord point, float dt, float B, float P, float S){
 	//Calcul des nouvelles coordonnees
 	float new_x = get_x(point) + (S * (get_y(point) - get_x(point) ) ) * dt;
 	float new_y = get_y(point) + (get_x(point) * (P - get_z(point) ) - get_y(point) ) * dt;
-	float new_z = get_z(point) + (get_x(point) * get_y(point) - B * get_z(point)) *dt;
+	float new_z = get_z(point) + (get_x(point) * get_y(point) - B * get_z(point)) * dt;
 	float new_t = get_t(point) + dt;
 	
 	//Mise à jour de point
