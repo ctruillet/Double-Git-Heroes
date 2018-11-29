@@ -13,8 +13,13 @@ int main(int argc, char *argv[]){
 	char LOG[128]; 								//Nom du fichier .log 
 	const char DATA[128] = "../data/position.dat"	;	//Nom du fichier contenant les positions
 	
+	Param parameters;
+
 	float Tmax = 5000; 	//Valeur min = 0, Valeur max = 40
 	float dt = 0.01;	//Valeur min = 0.005 , Valeur max = 5
+
+	//parameters->Param_Lorenz.B = 8/3;
+
 	float B = 8/3;		//Valeur par défaut : 8/3
 	float P = 28;		//Valeur par défaut : 28
 	float S = 10;		//Valeur par défaut : 10
@@ -35,6 +40,8 @@ int main(int argc, char *argv[]){
 	crea_log(LOG); 				//Création du fichier log
 	init_fichier(DATA,LOG);		//Création du fichier lorentz.dat
 	
+	choix_mode(LOG); //Choix du mode;
+
 	w_log(LOG,"Fin de la phase d'Initialisation.");
 	
 	
@@ -58,7 +65,7 @@ int main(int argc, char *argv[]){
 		while (get_t(point) <= Tmax){
 			//point = position_next_VanDerPol(point, dt, 0.02, 4, 0.2, 0.2, 10, 0.1);
 			//point = position_next_Lorenz(point, dt, B, P, S);
-			point = position_next_Rossler(point, dt, 0.2, 0.2, 5.7);
+			point = position_next_Rossler(point, dt, 0.2, 5.7);
 			w_fichier(fichier, point);
 		}
 		fclose(fichier);

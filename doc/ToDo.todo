@@ -1,18 +1,11 @@
 ToDO :
 	* Faire la librairie entrées
-		* Proposer plusieurs modes (vie enum - machine a état)
-			* Défaut
-				* Lorentz
-				* Autres (à chercher)
-			* Lorentz personalisé
-			* Easter Egg 
-				* A reflechir un truc rigolo
-		* Faire un style sympa
 		* https://openclassrooms.com/fr/courses/19980-apprenez-a-programmer-en-c/16993-la-saisie-de-texte-securisee
 	* Faire un .a ?
 		ar rcs lorentz.a fichier.o log.o ...
 	* Faire des structures pour les parametres des modules
-	
+		* raaaaaaaaaaaaaaaaaaah
+
 	* Attracteur de Lorenz 
 		* x = 1, y = 2, z = 3
 		* B = 8/3 S = 10 P = 28
@@ -26,15 +19,5 @@ ToDO :
 		* a =0.2 b = 0.2 c = 5.7
 
 
-	
-==========================================
-=================PROJET===================	
-==========================================
-
-Akory, bienvenue sur le projet trop stylé
-
-Choisisiez votre mode
-
-0 : Lorentz par défaut
-1 : Lorentz personalisé
-2 : ...
+2018-11-29
+22:46

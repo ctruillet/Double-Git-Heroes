@@ -1,5 +1,5 @@
 set parametric
-set title textcolor "red" "Equations de Rossler"
+set title textcolor "red" "Attracteur de Rossler"
 set grid
 set xlabel "x"
 set ylabel "y"
