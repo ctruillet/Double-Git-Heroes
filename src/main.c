@@ -11,17 +11,16 @@
 int main(int argc, char *argv[]){
 	//Déclaration des variables
 	char LOG[128]; 								//Nom du fichier .log 
-	const char DATA[128] = "../data/lorenz.dat"	;	//Nom du fichier contenant les positions
+	const char DATA[128] = "../data/position.dat"	;	//Nom du fichier contenant les positions
 	
-	float Tmax = 20; 	//Valeur min = 0, Valeur max = 40
-	float dt = 0.005;	//Valeur min = 0.005 , Valeur max = 5
+	float Tmax = 5000; 	//Valeur min = 0, Valeur max = 40
+	float dt = 0.01;	//Valeur min = 0.005 , Valeur max = 5
 	float B = 8/3;		//Valeur par défaut : 8/3
 	float P = 28;		//Valeur par défaut : 28
 	float S = 10;		//Valeur par défaut : 10
 	
 	Coord point = new_coord(0, 1, 2, 3); //Ceci doit bouger
 
-	
 	/*Initialisation
 	* 	Création du fichier .log
 	*	Initialisation du fichier lorentz.dat (situé dans ./data/)
@@ -57,7 +56,9 @@ int main(int argc, char *argv[]){
 		w_fichier(fichier, point); //On ecrit la position à t = 0
 		
 		while (get_t(point) <= Tmax){
-			point = position_next_lorenz(point, dt, B, P, S);
+			//point = position_next_VanDerPol(point, dt, 0.02, 4, 0.2, 0.2, 10, 0.1);
+			//point = position_next_Lorenz(point, dt, B, P, S);
+			point = position_next_Rossler(point, dt, 0.2, 0.2, 5.7);
 			w_fichier(fichier, point);
 		}
 		fclose(fichier);

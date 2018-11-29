@@ -44,8 +44,8 @@ Coord new_coord(float t, float x, float y, float z){
 	return position;
 }
 
-//Calcul de la nouvelle position
-Coord position_next_lorenz(Coord point, float dt, float B, float P, float S){
+//Calcul de la nouvelle position - Attracteur de Lorenz
+Coord position_next_Lorenz(Coord point, float dt, float B, float P, float S){
 	//Calcul des nouvelles coordonnees
 	float new_x = get_x(point) + (S * (get_y(point) - get_x(point) ) ) * dt;
 	float new_y = get_y(point) + (get_x(point) * (P - get_z(point) ) - get_y(point) ) * dt;
@@ -57,4 +57,32 @@ Coord position_next_lorenz(Coord point, float dt, float B, float P, float S){
 	
 	return point;
 
+}
+
+//Calcul de la nouvelle position - Attracteur de Van Der Pol
+Coord position_next_VanDerPol(Coord point, float dt, float k, float m, float b, float s, float p, float q){
+	//Calcul des nouvelles coordonnees
+	float new_x = get_x(point) + (k * (get_y(point) + m * get_x(point)*(b-get_y(point)*get_y(point) ) ) ) * dt;
+	float new_y = get_y(point) + (-get_x(point) + s * get_z(point) ) * dt;
+	float new_z = get_z(point) + ( p * get_x(point) - q * get_y(point))  * dt;
+	float new_t = get_t(point) + dt;
+	
+	//Mise à jour de point
+	point = new_coord(new_t, new_x, new_y, new_z);
+	
+	return point;
+}
+
+//Calcul de la nouvelle position - Attracteur de Rössler
+Coord position_next_Rossler(Coord point, float dt, float a, float b, float c){
+	//Calcul des nouvelles coordonnees
+	float new_x = get_x(point) - ((get_y(point) + get_z(point))) * dt;
+	float new_y = get_y(point) + (get_x(point) + a * get_y(point) ) * dt;
+	float new_z = get_z(point) + ( b + get_x(point) * get_z(point) - c * get_z(point))  * dt;
+	float new_t = get_t(point) + dt;
+	
+	//Mise à jour de point
+	point = new_coord(new_t, new_x, new_y, new_z);
+	
+	return point;
 }

@@ -24,5 +24,11 @@ float get_t (Coord position);
 //Création d'une nouvelle coordonnees
 Coord new_coord(float t, float x, float y, float z);
 
-//Calcul de la nouvelle position
-Coord position_next_lorenz(Coord point, float dt, float B, float P, float S);
+//Calcul de la nouvelle position - Attracteur de Lorenz
+Coord position_next_Lorenz(Coord point, float dt, float B, float P, float S);
+
+//Calcul de la nouvelle position - Attracteur de Van der Pol
+Coord position_next_VanDerPol(Coord point, float dt, float k, float m, float b, float s, float p, float q);
+
+//Calcul de la nouvelle position - Attracteur de Rössler
+Coord position_next_Rossler(Coord point, float dt, float a, float b, float c);
