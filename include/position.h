@@ -9,8 +9,35 @@
 typedef struct Coord * Coord;
 
 
-//Union des parametres
-typedef union Param * Param;
+// Structures des parametres
+
+typedef struct{
+	float B;
+	float P;
+	float S;
+}Param_Lorenz;
+
+typedef struct{
+	float k;
+	float m;
+	float b;
+	float s;
+	float p;
+	float q;
+}Param_VanDerPol;
+
+typedef struct{
+	float a;
+	float b;
+	float c;
+}Param_Rossler;
+
+//Parametres
+typedef union Param{
+	Param_Lorenz lorenz;
+	Param_VanDerPol vanderpol;
+	Param_Rossler rossler;
+}Param;
 
 
 //Recupere la valeur de x de la position
@@ -36,4 +63,4 @@ Coord position_next_Lorenz(Coord point, float dt, float B, float P, float S);
 Coord position_next_VanDerPol(Coord point, float dt, float k, float m, float b, float s, float p, float q);
 
 //Calcul de la nouvelle position - Attracteur de Rössler
-Coord position_next_Rossler(Coord point, float dt, float a, float c);
+Coord position_next_Rossler(Coord point, float dt, float a, float b,float c);

@@ -2,10 +2,9 @@
 #include "../include/entrees.h"
 #include "../include/log.h"
 
-int choix_mode(char * LOG){
-    int mode = 0;
+void choix_mode(int * mode, char * LOG){
     //Fonction de présentation du projet
-    //En bref, un empillement de printf
+    //En bref, un empilement de printf
 
 
     printf("===============================================================\n");
@@ -18,9 +17,9 @@ int choix_mode(char * LOG){
     printf("\t 2. Attracteur de Rössler\n");
     printf("\nSelectionnez l'attracteur souhaité en entrant son numéro associé (Par défaut 0).\n\n");
     
-    scanf("%d",&mode);
+    scanf("%d",mode);
 
-    switch(mode){
+    switch((*mode)){
         case 0:
             w_log(LOG, "Choix de l'attracteur de Lorenz");
             break;
@@ -32,10 +31,17 @@ int choix_mode(char * LOG){
             break;
         default:
             w_log(LOG, "Choix par défaut");
-            mode = 0;
+            (*mode) = 0;
             break;
     }
-    
 
-    return mode;
+    //Vider le buffer
+    vide_buffer();
+}
+
+void vide_buffer(){
+    int c = 0;
+    while(c != '\n' && c != EOF){
+        c = getchar();
+    }
 }

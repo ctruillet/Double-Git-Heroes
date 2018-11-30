@@ -33,4 +33,5 @@ main.o: main.c $(INCLUDE)/main.h
 	$(GCC) $(CFLAGS) -o main.o -c ./src/main.c
 	
 clean:
+	rm src/*.o
 	rm $(EXEC)
