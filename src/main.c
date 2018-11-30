@@ -14,14 +14,14 @@ int main(int argc, char *argv[]){
 	const char DATA[128] = "../data/position.dat"	;	//Nom du fichier contenant les positions
 	int mode;
 
+	//A virer a l'avenir
 	float Tmax = 500; 	//Valeur min = 0, Valeur max = 40
 	float dt = 0.01;	//Valeur min = 0.005 , Valeur max = 5
 
 	float B = 8/3;		//Valeur par défaut : 8/3
 	float P = 28;		//Valeur par défaut : 28
 	float S = 10;		//Valeur par défaut : 10
-	
-	Coord point = new_coord(0, 1, 2, 3); //Ceci doit bouger
+
 
 	/*Initialisation
 	* 	Création du fichier .log
@@ -38,6 +38,7 @@ int main(int argc, char *argv[]){
 	init_fichier(DATA,LOG);		//Création du fichier lorentz.dat
 	
 	choix_mode(&mode,LOG); //Choix du mode;
+	Coord point = choix_position(mode, LOG);
 
 	w_log(LOG,"Fin de la phase d'Initialisation.");
 	
@@ -68,7 +69,7 @@ int main(int argc, char *argv[]){
 					point = position_next_VanDerPol(point, dt, 0.02, 4, 0.2, 0.2, 10, 0.1);
 					break;
 				case 2: // Rössler
-					point = position_next_Rossler(point, dt, 0.2, 0.2, 5.7);
+					point = position_next_Rossler(point, dt, 0.2, 0.2, 14);
 					break;
 				default:
 					w_log(LOG,"[ERROR] Pas d\'attracteur selectionné.");
@@ -80,7 +81,7 @@ int main(int argc, char *argv[]){
 	}
 	else{ // On retourne l'erreur à la fonction main qui arrete l'execution
 		w_log(LOG,"[ERROR] Impossible d'ouvrir le fichier .dat");
-		exit(1);
+		exit(-1); //Peut-être a changer (eviter de lancer gnuplot)
     }
 	
 	
@@ -93,8 +94,9 @@ int main(int argc, char *argv[]){
 	
 	
 	trace_courbe(mode,DATA,LOG);
+
 	w_log(LOG,"FIN.");
 	
-	
+
 	return(0);
 }

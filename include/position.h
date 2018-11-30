@@ -8,37 +8,20 @@
 //Ceci est une structure de position
 typedef struct Coord * Coord;
 
+//Structure des parametres
+typedef struct Param_Lorenz * Param_Lorenz;
+typedef struct Param_VanDerPol * Param_VanDerPol;
+typedef struct Param_Rossler * Param_Rossler;
+typedef union Param * Param;
 
-// Structures des parametres
+//Set des parametres
+void setLorenz(Param_Lorenz L, Param P);
+void setVanDerPol(Param_VanDerPol V, Param P);
+void setRossler(Param_Rossler R, Param P);
 
-typedef struct{
-	float B;
-	float P;
-	float S;
-}Param_Lorenz;
-
-typedef struct{
-	float k;
-	float m;
-	float b;
-	float s;
-	float p;
-	float q;
-}Param_VanDerPol;
-
-typedef struct{
-	float a;
-	float b;
-	float c;
-}Param_Rossler;
-
-//Parametres
-typedef union Param{
-	Param_Lorenz lorenz;
-	Param_VanDerPol vanderpol;
-	Param_Rossler rossler;
-}Param;
-
+Param_Lorenz setParamLorenz(float B, float S, float P);
+Param_VanDerPol setParamVanDerPol(float k, float m, float b, float s, float p, float q);
+Param_Rossler setParamRossler(float a, float b, float c);
 
 //Recupere la valeur de x de la position
 float get_x (Coord position);

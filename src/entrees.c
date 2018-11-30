@@ -2,6 +2,71 @@
 #include "../include/entrees.h"
 #include "../include/log.h"
 
+
+
+void vide_buffer(){
+    int c = 0;
+    while(c != '\n' && c != EOF){
+        c = getchar();
+    }
+}
+
+Coord choix_position(int mode, char * LOG){
+    float x,y,z;
+    int pos_init = 1;
+
+    // On demande d'abord si on veut les valeurs par défaut ou non
+    printf("\nIl est maintenant temps de selectionner la position initiale.\n");
+    printf("\t 0. Je suis un(e) aventurier(e) et je veux explorer mon attracteur ! (choix de la position initiale)\n");
+    printf("\t 1. J'aime rester dans les sentiers battus (position initiale par défaut)\n");
+    scanf("%d",&pos_init);
+
+
+    switch(pos_init){
+        case 0: // Cas choix de la position
+            w_log(LOG, "Choix de la position initiale");
+                printf("\nEntrez la position initiale dans le format \"x y z\"\n");
+                scanf("%f %f %f",&x,&y,&z);
+                
+            break;
+
+        case 1: //Cas valeur par défaut
+            w_log(LOG, "Position initiale par défaut");
+
+            switch(mode){
+                case 0: //Lorenz
+                    x = 1;
+                    y = 2;
+                    z = 3;
+                    break;
+
+                case 1: //Van Der Pol
+                    x = 0.2;
+                    y = 0.2;
+                    z = 0.2;
+                    break;
+
+                case 2: //Rossler
+                    x = 0;
+                    y = 0;
+                    z = 0;
+                    break;
+            }
+
+            break;
+
+        default:
+            w_log(LOG, "Position nulle choisie");
+            x = 0;
+            y = 0;
+            z = 0;
+            break;
+    }
+
+    //on renvoie la structure Coord remplie avec les parametres choisit
+    return new_coord(0, x, y, z);;
+}
+
 void choix_mode(int * mode, char * LOG){
     //Fonction de présentation du projet
     //En bref, un empilement de printf
@@ -39,9 +104,3 @@ void choix_mode(int * mode, char * LOG){
     vide_buffer();
 }
 
-void vide_buffer(){
-    int c = 0;
-    while(c != '\n' && c != EOF){
-        c = getchar();
-    }
-}

@@ -4,7 +4,7 @@
 #include "../include/gnuplot.h"
 
 /*
-	Cette librairie appelle le fichier lorentz.sh qui lance gnuplot avec les bons parametres.
+	Cette librairie appelle le fichier .sh qui lance gnuplot avec les bons parametres.
 */
   
 void trace_courbe(int mode, const char * FICHIER, char * LOG){

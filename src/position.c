@@ -11,6 +11,89 @@ typedef struct Coord{
 	float z;
 } Coordonnees_s;
 
+// Structures des parametres
+
+typedef struct Param_Lorenz{
+	float B;
+	float P;
+	float S;
+}Param_Lorenz_s;
+
+typedef struct Param_VanDerPol{
+	float k;
+	float m;
+	float b;
+	float s;
+	float p;
+	float q;
+}Param_VanDerPol_s;
+
+typedef struct Param_Rossler{
+	float a;
+	float b;
+	float c;
+}Param_Rossler_s;
+
+//Parametres
+typedef union Param{
+	Param_Lorenz lorenz;
+	Param_VanDerPol vanderpol;
+	Param_Rossler rossler;
+}Param_s;
+
+
+//Fonctions assignant les parametres du mode choisis dans l'union
+void setLorenz(Param_Lorenz L, Param P){
+	P->lorenz = (Param_Lorenz)&L;
+}
+
+void setVanDerPol(Param_VanDerPol V, Param P){
+	P->vanderpol = (Param_VanDerPol)&V;
+}
+
+void setRossler(Param_Rossler R, Param P){
+	P->rossler = (Param_Rossler)&R;
+}
+
+//remplissage des parametres
+Param_Lorenz setParamLorenz(float B, float S, float P){
+	Param_Lorenz parameters;
+	parameters = (Param_Lorenz)malloc(sizeof(Param_Lorenz_s));
+
+	parameters->B = B;
+	parameters->P = P;
+	parameters->S = S;
+
+	return parameters;
+}
+
+Param_VanDerPol setParamVanDerPol(float k, float m, float b, float s, float p, float q){
+	Param_VanDerPol parameters;
+	parameters = (Param_VanDerPol)malloc(sizeof(Param_VanDerPol_s));
+
+	parameters->k = k;
+	parameters->m = m;
+	parameters->b = b;
+	parameters->s = s;
+	parameters->p = p;
+	parameters->q = q;
+
+	return parameters;
+}
+
+Param_Rossler setParamRossler(float a, float b, float c){
+	Param_Rossler parameters;
+	parameters = (Param_Rossler)malloc(sizeof(Param_Rossler_s));
+
+	parameters->a = a;
+	parameters->b = b;
+	parameters->c = c;
+
+	return parameters;
+}
+
+
+
 //Recupere la valeur de x de la position
 float get_x (Coord position){
 	return position->x;
