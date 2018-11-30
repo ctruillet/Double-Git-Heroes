@@ -14,7 +14,7 @@ int main(int argc, char *argv[]){
 	const char DATA[128] = "../data/position.dat"	;	//Nom du fichier contenant les positions
 	int mode;
 
-	float Tmax = 5000; 	//Valeur min = 0, Valeur max = 40
+	float Tmax = 500; 	//Valeur min = 0, Valeur max = 40
 	float dt = 0.01;	//Valeur min = 0.005 , Valeur max = 5
 
 	float B = 8/3;		//Valeur par défaut : 8/3
@@ -61,18 +61,15 @@ int main(int argc, char *argv[]){
 		
 		while (get_t(point) <= Tmax){
 			switch(mode){
-				case 0:
+				case 0: //Lorenz
 					point = position_next_Lorenz(point, dt, B, P, S);
 					break;
-
-				case 1:
+				case 1:  //Van Der Pol
 					point = position_next_VanDerPol(point, dt, 0.02, 4, 0.2, 0.2, 10, 0.1);
 					break;
-
-				case 2:
+				case 2: // Rössler
 					point = position_next_Rossler(point, dt, 0.2, 0.2, 5.7);
 					break;
-
 				default:
 					w_log(LOG,"[ERROR] Pas d\'attracteur selectionné.");
 
@@ -95,7 +92,7 @@ int main(int argc, char *argv[]){
 	*/
 	
 	
-	trace_courbe(DATA,LOG);
+	trace_courbe(mode,DATA,LOG);
 	w_log(LOG,"FIN.");
 	
 	

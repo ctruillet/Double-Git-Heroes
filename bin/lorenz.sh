@@ -1,4 +1,4 @@
 export DISPLAY=:0
 
-gnuplot ../data/parameters
+gnuplot ../data/gnuplot_param/lorenz_param
 
