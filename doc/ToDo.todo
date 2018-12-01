@@ -3,8 +3,6 @@ ToDO :
 		* https://openclassrooms.com/fr/courses/19980-apprenez-a-programmer-en-c/16993-la-saisie-de-texte-securisee
 	* Faire un .a ?
 		ar rcs lorentz.a fichier.o log.o ...
-	* Faire des structures pour les parametres des modules
-		* raaaaaaaaaaaaaaaaaaah
 
 	* Attracteur de Lorenz 
 		* x = 1, y = 2, z = 3
@@ -20,3 +18,7 @@ ToDO :
 
 2018-12-01
 12:16
+
+2018-12-01
+20:27
+

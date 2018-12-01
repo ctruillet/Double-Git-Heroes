@@ -1,0 +1,11 @@
+[22:21:16] Création du fichier .log
+[22:21:16] Création du fichier .dat
+[22:21:18] Choix de l'attracteur de Lorenz
+[22:21:20] Choix de la position initiale.
+[22:21:31] Choix des parametres par défaut.
+[22:21:31] [ERROR] User wants a non-binary system.
+[22:21:31] Fin de la phase d'Initialisation.
+[22:21:31] Début de la phase de Calcul.
+[22:21:33] Fin de la phase de Calcul.
+[22:21:33] Ouverture de Gnuplot.
+[22:23:36] FIN.

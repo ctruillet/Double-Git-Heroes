@@ -43,23 +43,29 @@ typedef union Param{
 
 
 //Fonctions assignant les parametres du mode choisis dans l'union
-void setLorenz(Param_Lorenz L, Param P){
+Param setLorenz(Param_Lorenz L, Param P){
 	P = (Param)malloc(sizeof(Param_s));
 	P->lorenz = (Param_Lorenz)&L;
+
+	return P;
 }
 
-void setVanDerPol(Param_VanDerPol V, Param P){
+Param setVanDerPol(Param_VanDerPol V, Param P){
 	P = (Param)malloc(sizeof(Param_s));
 	P->vanderpol = (Param_VanDerPol)&V;
+		
+	return P;
 }
-
-void setRossler(Param_Rossler R, Param P){
+ 
+Param setRossler(Param_Rossler R, Param P){
 	P = (Param)malloc(sizeof(Param_s));
 	P->rossler = (Param_Rossler)&R;
+		
+	return P;
 }
 
 //remplissage des parametres
-void setParamLorenz(Param param, float B, float S, float P){
+Param setParamLorenz(Param param, float B, float S, float P){
 	Param_Lorenz parametersL;
 	parametersL = (Param_Lorenz)malloc(sizeof(Param_Lorenz_s));
 
@@ -67,28 +73,26 @@ void setParamLorenz(Param param, float B, float S, float P){
 	parametersL->P = P;
 	parametersL->S = S;
 
-	setLorenz(parametersL,param);
+	return setLorenz(parametersL,param);
 }
 
-void setParamVanDerPol(Param param, float K, float M, float B, float S, float P, float Q){
+Param setParamVanDerPol(Param param, float K, float M, float B, float S, float P, float Q){
 
 	Param_VanDerPol parametersV;
 	parametersV = (Param_VanDerPol)malloc(sizeof(Param_VanDerPol_s));
-	printf("\nWARNING\n");
+
 	parametersV->K = K;
 	parametersV->M = M;
 	parametersV->B = B;
 	parametersV->S = S;
 	parametersV->P = P;
 	parametersV->Q = Q;
-	printf("%f -> %f",K,parametersV->K);
-	printf("\nWARNING\n");
 
-	setVanDerPol(parametersV,param);
+	return setVanDerPol(parametersV,param);
 
 }
 
-void setParamRossler(Param param, float A, float B, float C){
+Param setParamRossler(Param param, float A, float B, float C){
 	Param_Rossler parametersR;
 	parametersR = (Param_Rossler)malloc(sizeof(Param_Rossler_s));
 
@@ -96,7 +100,7 @@ void setParamRossler(Param param, float A, float B, float C){
 	parametersR->B = B;
 	parametersR->C = C;
 
-	setRossler(parametersR,param);
+	return setRossler(parametersR,param);
 
 }
 

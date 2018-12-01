@@ -13,14 +13,14 @@ void vide_buffer();
 //Choisir un mode + Accueil 
 void choix_mode(int * mode,char * LOG);
 
+//Choix de la position initiale
 Coord choix_position(int mode, char * LOG);
 
-void choix_param(int mode, char * LOG);
+// Choix des parametres
+Param choix_param(int mode, char * LOG);
 
+//Choix de dt
+void choix_dt(float * dt);
 
-/*TODO
-    * init param (niveau Satan ++)
-    * init dt (easy)
-    * fonctions getParam (renvoie la structure des parametres de Lorenz, ou Van Der Pol, ou Rossler)
-    * Idem en set
-*/
+//Choix de Tmax
+void choix_Tmax(float * Tmax);

@@ -15,13 +15,13 @@ typedef struct Param_Rossler * Param_Rossler;
 typedef union Param * Param;
 
 //Set des parametres
-void setLorenz(Param_Lorenz L, Param P);
-void setVanDerPol(Param_VanDerPol V, Param P);
-void setRossler(Param_Rossler R, Param P);
+Param setLorenz(Param_Lorenz L, Param P);
+Param setVanDerPol(Param_VanDerPol V, Param P);
+Param setRossler(Param_Rossler R, Param P);
 
-void setParamLorenz(Param param, float B, float S, float P);
-void setParamVanDerPol(Param param, float K, float M, float B, float S, float P, float Q);
-void setParamRossler(Param param, float A, float B, float C);
+Param setParamLorenz(Param param, float B, float S, float P);
+Param setParamVanDerPol(Param param, float K, float M, float B, float S, float P, float Q);
+Param setParamRossler(Param param, float A, float B, float C);
 
 //Recupere la valeur de x de la position
 float get_x (Coord position);

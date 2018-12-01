@@ -14,16 +14,10 @@ int main(int argc, char *argv[]){
 	const char DATA[128] = "../data/position.dat"	;	//Nom du fichier contenant les positions
 	int mode;
 
+	Param parameters; //Parametres
 
-
-	//A virer a l'avenir
-	float Tmax = 500; 	//Valeur min = 0, Valeur max = 40
-	float dt = 0.01;	//Valeur min = 0.005 , Valeur max = 5
-
-	float B = 8/3;		//Valeur par défaut : 8/3
-	float P = 28;		//Valeur par défaut : 28
-	float S = 10;		//Valeur par défaut : 10
-
+	float Tmax;
+	float dt;	
 
 	/*Initialisation
 	* 	Création du fichier .log
@@ -40,7 +34,14 @@ int main(int argc, char *argv[]){
 	init_fichier(DATA,LOG);		//Création du fichier lorentz.dat
 	
 	choix_mode(&mode,LOG); //Choix du mode;
-	Coord point = choix_position(mode, LOG);
+
+	Coord point = choix_position(mode, LOG); //Entrée de la position initiale
+
+	choix_dt(&dt); //Choix de dt
+
+	choix_Tmax(&Tmax); //Choix de Tmax
+
+	parameters = choix_param(mode, LOG);//Entrée des parametres
 
 	w_log(LOG,"Fin de la phase d'Initialisation.");
 	
@@ -65,7 +66,7 @@ int main(int argc, char *argv[]){
 		while (get_t(point) <= Tmax){
 			switch(mode){
 				case 0: //Lorenz
-					point = position_next_Lorenz(point, dt, B, P, S);
+					point = position_next_Lorenz(point, dt, 8/3, 28, 10);
 					break;
 				case 1:  //Van Der Pol
 					point = position_next_VanDerPol(point, dt, 0.02, 4, 0.2, 0.2, 10, 0.1);
@@ -83,7 +84,7 @@ int main(int argc, char *argv[]){
 	}
 	else{ // On retourne l'erreur à la fonction main qui arrete l'execution
 		w_log(LOG,"[ERROR] Impossible d'ouvrir le fichier .dat");
-		exit(-1); //Peut-être a changer (eviter de lancer gnuplot)
+		exit(-1); //Eviter de lancer gnuplot
     }
 	
 	
@@ -94,7 +95,7 @@ int main(int argc, char *argv[]){
 	*	Appel de trace_courbe (librairie Gnuplot)
 	*/
 	
-	
+	printf("\n\t Calcul de %.0f positions ...\n",Tmax/dt);
 	trace_courbe(mode,DATA,LOG);
 
 	w_log(LOG,"FIN.");

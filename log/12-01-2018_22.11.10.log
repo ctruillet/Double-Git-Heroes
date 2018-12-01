@@ -1,0 +1,10 @@
+[22:11:10] Création du fichier .log
+[22:11:10] Création du fichier .dat
+[22:11:17] Choix de l'attracteur de Van Der Pol
+[22:11:19] Choix de la position initiale.
+[22:11:27] [ERROR] User wants a non-binary system.
+[22:11:27] Fin de la phase d'Initialisation.
+[22:11:27] Début de la phase de Calcul.
+[22:11:27] Fin de la phase de Calcul.
+[22:11:27] Ouverture de Gnuplot.
+[22:11:39] FIN.
