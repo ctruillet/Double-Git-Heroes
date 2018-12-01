@@ -15,6 +15,7 @@ void choix_mode(int * mode,char * LOG);
 
 Coord choix_position(int mode, char * LOG);
 
+void choix_param(int mode, char * LOG);
 
 
 /*TODO

@@ -19,9 +19,9 @@ void setLorenz(Param_Lorenz L, Param P);
 void setVanDerPol(Param_VanDerPol V, Param P);
 void setRossler(Param_Rossler R, Param P);
 
-Param_Lorenz setParamLorenz(float B, float S, float P);
-Param_VanDerPol setParamVanDerPol(float k, float m, float b, float s, float p, float q);
-Param_Rossler setParamRossler(float a, float b, float c);
+void setParamLorenz(Param param, float B, float S, float P);
+void setParamVanDerPol(Param param, float K, float M, float B, float S, float P, float Q);
+void setParamRossler(Param param, float A, float B, float C);
 
 //Recupere la valeur de x de la position
 float get_x (Coord position);
@@ -43,7 +43,7 @@ Coord new_coord(float t, float x, float y, float z);
 Coord position_next_Lorenz(Coord point, float dt, float B, float P, float S);
 
 //Calcul de la nouvelle position - Attracteur de Van der Pol
-Coord position_next_VanDerPol(Coord point, float dt, float k, float m, float b, float s, float p, float q);
+Coord position_next_VanDerPol(Coord point, float dt, float K, float M, float B, float S, float P, float Q);
 
 //Calcul de la nouvelle position - Attracteur de Rössler
-Coord position_next_Rossler(Coord point, float dt, float a, float b,float c);
+Coord position_next_Rossler(Coord point, float dt, float A, float B,float C);

@@ -14,6 +14,8 @@ int main(int argc, char *argv[]){
 	const char DATA[128] = "../data/position.dat"	;	//Nom du fichier contenant les positions
 	int mode;
 
+
+
 	//A virer a l'avenir
 	float Tmax = 500; 	//Valeur min = 0, Valeur max = 40
 	float dt = 0.01;	//Valeur min = 0.005 , Valeur max = 5

@@ -20,18 +20,18 @@ typedef struct Param_Lorenz{
 }Param_Lorenz_s;
 
 typedef struct Param_VanDerPol{
-	float k;
-	float m;
-	float b;
-	float s;
-	float p;
-	float q;
+	float K;
+	float M;
+	float B;
+	float S;
+	float P;
+	float Q;
 }Param_VanDerPol_s;
 
 typedef struct Param_Rossler{
-	float a;
-	float b;
-	float c;
+	float A;
+	float B;
+	float C;
 }Param_Rossler_s;
 
 //Parametres
@@ -44,52 +44,60 @@ typedef union Param{
 
 //Fonctions assignant les parametres du mode choisis dans l'union
 void setLorenz(Param_Lorenz L, Param P){
+	P = (Param)malloc(sizeof(Param_s));
 	P->lorenz = (Param_Lorenz)&L;
 }
 
 void setVanDerPol(Param_VanDerPol V, Param P){
+	P = (Param)malloc(sizeof(Param_s));
 	P->vanderpol = (Param_VanDerPol)&V;
 }
 
 void setRossler(Param_Rossler R, Param P){
+	P = (Param)malloc(sizeof(Param_s));
 	P->rossler = (Param_Rossler)&R;
 }
 
 //remplissage des parametres
-Param_Lorenz setParamLorenz(float B, float S, float P){
-	Param_Lorenz parameters;
-	parameters = (Param_Lorenz)malloc(sizeof(Param_Lorenz_s));
+void setParamLorenz(Param param, float B, float S, float P){
+	Param_Lorenz parametersL;
+	parametersL = (Param_Lorenz)malloc(sizeof(Param_Lorenz_s));
 
-	parameters->B = B;
-	parameters->P = P;
-	parameters->S = S;
+	parametersL->B = B;
+	parametersL->P = P;
+	parametersL->S = S;
 
-	return parameters;
+	setLorenz(parametersL,param);
 }
 
-Param_VanDerPol setParamVanDerPol(float k, float m, float b, float s, float p, float q){
-	Param_VanDerPol parameters;
-	parameters = (Param_VanDerPol)malloc(sizeof(Param_VanDerPol_s));
+void setParamVanDerPol(Param param, float K, float M, float B, float S, float P, float Q){
 
-	parameters->k = k;
-	parameters->m = m;
-	parameters->b = b;
-	parameters->s = s;
-	parameters->p = p;
-	parameters->q = q;
+	Param_VanDerPol parametersV;
+	parametersV = (Param_VanDerPol)malloc(sizeof(Param_VanDerPol_s));
+	printf("\nWARNING\n");
+	parametersV->K = K;
+	parametersV->M = M;
+	parametersV->B = B;
+	parametersV->S = S;
+	parametersV->P = P;
+	parametersV->Q = Q;
+	printf("%f -> %f",K,parametersV->K);
+	printf("\nWARNING\n");
 
-	return parameters;
+	setVanDerPol(parametersV,param);
+
 }
 
-Param_Rossler setParamRossler(float a, float b, float c){
-	Param_Rossler parameters;
-	parameters = (Param_Rossler)malloc(sizeof(Param_Rossler_s));
+void setParamRossler(Param param, float A, float B, float C){
+	Param_Rossler parametersR;
+	parametersR = (Param_Rossler)malloc(sizeof(Param_Rossler_s));
 
-	parameters->a = a;
-	parameters->b = b;
-	parameters->c = c;
+	parametersR->A = A;
+	parametersR->B = B;
+	parametersR->C = C;
 
-	return parameters;
+	setRossler(parametersR,param);
+
 }
 
 

@@ -4,15 +4,16 @@
 
 * Rapport 2 : 7/12/2018
 
-  * Fichier Makefile
-
+  * Fichier Makefile -> OK
   * Repertoire doc
-
-    * Rapport 1
-
-    * Guide d'utilisation
-
+    * Rapport 1 -> OK
     * Rapport 2
+        * Explication des corrections
+        * Guide
+        * Difficultées rencontrées
+        * Tests
+    * Guide d'utilisation
+        * Windows -> Installation d'un serveur X
 
 
 Note pour le Rapport 2:
