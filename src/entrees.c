@@ -1,7 +1,71 @@
 #include <stdio.h>
+
 #include "../include/entrees.h"
+
 #include "../include/position.h"
-#include "../include/log.h
+
+#include "../include/log.h"
+
+#define LONG 100
+
+void viderBuffer(){
+    int c = 0;
+    while (c != '\n' && c != EOF)
+    {
+        c = getchar();
+    }
+}
+
+int lire(char *chaine, int longueur){
+    char *positionEntree = NULL;
+ 
+    if (fgets(chaine, longueur, stdin) != NULL){
+        positionEntree = strchr(chaine, '\n');
+        if (positionEntree != NULL){
+            *positionEntree = '\0';
+        }
+        else{
+            viderBuffer();
+        }
+        return 1;
+    }
+    else{
+        viderBuffer();
+        return 0;
+    }
+}
+
+int verifFloat(char * c){
+	int i=0;
+	while(c[i]!='\0'){
+		if((c[i]>=57 || c[i]<=48) && c[i]!=46){
+			return 1;
+		}
+	i++;
+	}	
+	return 0;
+}
+
+float char_to_float(char * c){
+	float nbr;
+	nbr=strtof(c,NULL);
+	return (nbr);
+}
+
+
+int lire_float(float * f){
+	char c[LONG];
+	lire(c,LONG);
+	if(verifFloat(c)){
+		return 0;
+	}
+	else{
+		*f=char_to_float(c);
+		return 1;
+	}
+	
+}
+
 
  void init_position(Coordonnees *point, float *Tmax){
 	  char reponse;
@@ -12,11 +76,11 @@
 	  }while(reponse!="y" || reponse!="N");
 	  if(reponse=="N");{
 			printf("Entrez la position initiale du point dans l'espace\nx?"\n);
-			scanf ("%f",point->x);
+			lire_float (point->x);
 			printf("y?\n");
-			scanf ("%f",point->y);
+			lire_float (point->y);
 			printf("f?\n");
-			scanf ("%f",point->z);
+			lire_float (point->z);
 			w_log(LOG, "position initiale personalisée");
 	  }	
 	  else{
@@ -24,7 +88,9 @@
 		  point->y=2;
 		  point->z=3;
 		  w_log(LOG, "position initiale par defaut");
+	  }
  }
+ 
  
   void init_parametres(float *S, float *B, float *P){
 	  char reponse;
@@ -35,11 +101,11 @@
 	  }while(reponse!="y" || reponse!="N");
 	  if(reponse=="N");{
 		  printf("Entrez les valeur de lorentz\nσ?\n");
-		  scanf("%f",*S);
+		  lire_float(*S);
 		  printf("ß?\n");
-		  scanf("%f",*B);
+		  lire_float(*B);
 		  printf("ρ?\n");
-		  scanf("%f",*P);
+		  lire_float(*P);
 		  w_log(LOG, "parametres initiaux personalisée");
 	  }
 	  else{
@@ -52,7 +118,7 @@
 
   void maj_vitesse(float *dt){
 	  printf("Entrez la mise à jours de la vitesse\ndt=?");
-	  scanf("%f",dt);
+	  lire_float(,dt);
  }
  
- //reste à vérifier qu'il s'agit bien d'un nombre 
+ //securiser l'entrée de char, inclure les setters de position, 3 chances avant valeurs par default

@@ -1,6 +1,15 @@
+#ifndef__STDIO_H__
 #include <stdio.h>
+#define__STDIO_H__
+#endif
+#ifndef__FICHIER_H__
 #include "../include/fichier.h"
+#define__FICHIER_H__
+#endif
+#ifndef__POSITION_H__
 #include "../include/position.h"
+#define__POSITION_H__
+#endif
 
 
 void init_fichier(){
