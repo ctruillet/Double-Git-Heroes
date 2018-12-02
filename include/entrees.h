@@ -6,6 +6,10 @@
 	#include "position.h"
 #endif
 
+/*
+Derniere modification : 2018-12-02 17:43:27
+Par : Clement
+*/
 
 //Vider le buffer
 void vide_buffer();

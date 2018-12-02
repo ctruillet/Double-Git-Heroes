@@ -3,7 +3,11 @@
  */
 #define __POSITION_H__
 
-//Debut Test
+/*
+Derniere modification : 2018-12-02 17:43:52
+Par : Clement
+*/
+
 
 //Ceci est une structure de position
 typedef struct Coord * Coord;

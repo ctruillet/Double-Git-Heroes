@@ -2,6 +2,13 @@
 #include "../include/fichier.h"
 #include "../include/log.h"
 
+/*
+Derniere modification : 2018-12-02 17:28:04
+Par : Clement
+*/
+
+
+
 //Vider le fichier si il existe déjà, sinon, le vider	
 void init_fichier(const char * FICHIER, char * LOG){
   FILE* fichier = NULL;

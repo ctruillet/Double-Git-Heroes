@@ -4,6 +4,12 @@
 #include "../include/gnuplot.h"
 
 /*
+Derniere modification : 2018-12-02 17:28:11
+Par : Clement
+*/
+
+
+/*
 	Cette librairie appelle le fichier .sh qui lance gnuplot avec les bons parametres.
 */
   

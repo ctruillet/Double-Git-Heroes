@@ -2,7 +2,15 @@
 #include "../include/entrees.h"
 #include "../include/log.h"
 
+#define TMAX 5000
+#define TMIN 10
+#define DT_MAX 0.01
+#define DT_MIN 0.0005
 
+/*
+Derniere modification : 2018-12-02 17:27:38
+Par : Clement
+*/
 
 void vide_buffer(){
     int c = 0;
@@ -17,11 +25,11 @@ void choix_dt(float * dt){
     printf("\n\t dt min = 0.0005s et dt max = 0.01s.\n");
     scanf("%f",dt);
     
-    if ((*dt) < 0.0005){
-        (*dt) = 0.0005;
+    if ((*dt) < DT_MIN){
+        (*dt) = DT_MIN;
     }else{
-        if ((*dt)>0.01){
-            (*dt) = 0.01;
+        if ((*dt)>DT_MAX){
+            (*dt) = DT_MAX;
         }
     }
     printf("\n\t-> dt = %.4f s",(*dt));
@@ -33,14 +41,14 @@ void choix_dt(float * dt){
 void choix_Tmax(float * Tmax){
     printf("\nNonobstant l'envie de dessiner un attracteur jusqu'à un temps infini, il vous est demandé de fournir un temps d'arrêt.");
     printf("\n\tBien évidemment, nous veillerons a ne pas recevoir un temps trop grand ou nul.");
-    printf("\n\tC'est pour celà qu'est fixée une valeur minimum et maximum Tmin = 10s et Tmax = 10000s.\n");
+    printf("\n\tC'est pour celà qu'est fixée une valeur minimum et maximum Tmin = 10s et Tmax = 5000s.\n");
     scanf("%f",Tmax);
     
-    if ((*Tmax) < 10){
-        (*Tmax) = 10;
+    if ((*Tmax) < TMIN){
+        (*Tmax) = TMIN;
     }else{
-        if ((*Tmax) > 10000){
-            (*Tmax) = 10000;
+        if ((*Tmax) > TMAX){
+            (*Tmax) = TMAX;
         }
     }
     printf("\n\t-> Tmax = %.2f s",(*Tmax));
@@ -65,13 +73,13 @@ Param choix_param(int mode, char * LOG){
     switch(defaut){
         case 0:
             w_log(LOG, "Choix des parametres."); //Ecriture dans le log
-            printf("\n\nEntrez les parametres sous leurs formes décimale dans le format ");
+            printf("\n\nEntrez les parametres sous leurs formes décimales dans le format ");
 
             switch(mode){
                 case 0: //Lorenz
                     printf("\"B P S\"\n");
                     scanf("%lf %lf %lf",&B,&P,&S);
-                    printf("\n\t-> B=%f P=%f S=%f\v",B,P,S);
+                    printf("\n\t-> B=%f P=%f S=%f\n",B,P,S);
                     parameters = setParamLorenz(parameters, B, P, S); // On remplit parameters avec les parametres entrés
 
                     break;
@@ -79,7 +87,7 @@ Param choix_param(int mode, char * LOG){
                 case 1: //Van Der Pol
                     printf("\"K M B S P Q\"\n");
                     scanf("%lf %lf %lf %lf %lf %lf",&K,&M,&B,&S,&P,&Q); 
-                    printf("\n\t-> K=%f M=%f B=%f S=%f P=%f Q=%f\v",K,M,B,S,P,Q);
+                    printf("\n\t-> K=%f M=%f B=%f S=%f P=%f Q=%f\n",K,M,B,S,P,Q);
 
                     parameters = setParamVanDerPol(parameters, K,M,B,S,P,Q); // On remplit parameters avec les parametres entrés
                     break;
@@ -87,7 +95,7 @@ Param choix_param(int mode, char * LOG){
                 case 2: //Rossler        
                     printf("\"A B C\"\n");
                     scanf("%lf %lf %lf",&A,&B,&C);
-                    printf("\n\t-> A=%f B=%f C=%f\v",A,B,C);
+                    printf("\n\t-> A=%f B=%f C=%f\n",A,B,C);
 
                     parameters = setParamRossler(parameters, A,B,C); // On remplit parameters avec les parametres entrés
                     break;
@@ -105,17 +113,17 @@ Param choix_param(int mode, char * LOG){
             switch(mode){
                 case 0: //Lorenz
                     parameters = setParamLorenz(parameters, 8/3, 28, 10); // On remplit parameters avec les parametre
-                    printf("\n\t-> B=2.66 P=28 S=10\v");
+                    printf("\n\t-> B=2.66 P=28 S=10\n");
                     break;
 
                 case 1: //Van Der Pol
                     parameters = setParamVanDerPol(parameters, 0.02, 4, 0.2, 0.2, 10, 0.1); // On remplit parameters avec les parametres
-                    printf("\n\t-> K=0.02 M=4 B=0.2 S=0.2 P=10 Q=0.1\v");
+                    printf("\n\t-> K=0.02 M=4 B=0.2 S=0.2 P=10 Q=0.1\n");
                     break;
 
                 case 2: //Rossler        
                     parameters = setParamRossler(parameters, 0.2, 0.2, 5.7); // On remplit parameters avec les parametres
-                    printf("\n\t-> A=0.2 B=0.2 C=5.7\v");
+                    printf("\n\t-> A=0.2 B=0.2 C=5.7\n");
                     break;
                 
                 default:
@@ -132,17 +140,17 @@ Param choix_param(int mode, char * LOG){
             switch(mode){
                 case 0: //Lorenz
                     parameters = setParamLorenz(parameters, 8/3, 28, 10); // On remplit parameters avec les parametre
-                    printf("\n\t-> B=2.66 P=28 S=10\v");
+                    printf("\n\t-> B=2.66 P=28 S=10\n");
                     break;
 
                 case 1: //Van Der Pol
                     parameters = setParamVanDerPol(parameters, 0.02, 4, 0.2, 0.2, 10, 0.1); // On remplit parameters avec les parametres
-                    printf("\n\t-> K=0.02 M=4 B=0.2 S=0.2 P=10 Q=0.1\v");
+                    printf("\n\t-> K=0.02 M=4 B=0.2 S=0.2 P=10 Q=0.1\n");
                     break;
 
                 case 2: //Rossler        
                     parameters = setParamRossler(parameters, 0.2, 0.2, 5.7); // On remplit parameters avec les parametres
-                    printf("\n\t-> A=0.2 B=0.2 C=5.7\v");
+                    printf("\n\t-> A=0.2 B=0.2 C=5.7\n");
                     break;
                 
                 default:
@@ -228,9 +236,9 @@ void choix_mode(int * mode, char * LOG){
     //En bref, un empilement de printf
 
 
-    printf("===============================================================\n");
+    printf("\n===============================================================\n");
     printf("================ Modélisation de Trajectoires =================\n");
-    printf("===============================================================\n\v\n");
+    printf("===============================================================\n\n\n");
     printf("Bienvenue sur ce projet de modélisation de trajectoire d'un point.\n\n");
     printf("Sont proposés ici, trois attracteurs étranges : \n");
     printf("\t 0. Attracteur de Lorenz\n");

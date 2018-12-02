@@ -1,5 +1,5 @@
 GCC=gcc
-LDFLAGS=-lm -lentrees
+LDFLAGS=-lm
 LIB=./lib
 BIN=./bin
 INCLUDE=./include

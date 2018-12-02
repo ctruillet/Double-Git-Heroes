@@ -3,6 +3,11 @@
 #include "../include/position.h"
 #include "../include/log.h"
 
+/*
+Derniere modification : 2018-12-02 17:28:26
+Par : Clement
+*/
+
 //Structure de la position
 typedef struct Coord{
 	double t; //temps
@@ -76,7 +81,7 @@ Param setRossler(Param_Rossler R, Param P){
 }
 
 //remplissage des parametres
-Param setParamLorenz(Param param, double B, double S, double P){
+Param setParamLorenz(Param param, double B, double P, double S){
 	Param_Lorenz parametersL;
 	parametersL = (Param_Lorenz)malloc(sizeof(Param_Lorenz_s));
 	

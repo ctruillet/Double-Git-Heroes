@@ -6,7 +6,10 @@
 #include "../include/gnuplot.h"
 #include "../include/log.h"
 
-
+/*
+Derniere modification : 2018-12-02 17:28:35
+Par : Clement
+*/
 
 int main(int argc, char *argv[]){
 	//Déclaration des variables
@@ -54,6 +57,7 @@ int main(int argc, char *argv[]){
 	
 	w_log(LOG,"Début de la phase de Calcul.");
 
+	printf("\n\t Calcul de %.0f positions ...\n",Tmax/dt);
 	
 	FILE* fichier = NULL;
 
@@ -95,7 +99,6 @@ int main(int argc, char *argv[]){
 	*	Appel de trace_courbe (librairie Gnuplot)
 	*/
 	
-	printf("\n\t Calcul de %.0f positions ...\n",Tmax/dt);
 	trace_courbe(mode,DATA,LOG);
 
 	w_log(LOG,"FIN.");
