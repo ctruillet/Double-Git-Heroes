@@ -5,33 +5,33 @@
 
 //Structure de la position
 typedef struct Coord{
-	float t; //temps
-	float x; 
-	float y;
-	float z;
+	double t; //temps
+	double x; 
+	double y;
+	double z;
 } Coordonnees_s;
 
 // Structures des parametres
 
 typedef struct Param_Lorenz{
-	float B;
-	float P;
-	float S;
+	double B;
+	double P;
+	double S;
 }Param_Lorenz_s;
 
 typedef struct Param_VanDerPol{
-	float K;
-	float M;
-	float B;
-	float S;
-	float P;
-	float Q;
+	double K;
+	double M;
+	double B;
+	double S;
+	double P;
+	double Q;
 }Param_VanDerPol_s;
 
 typedef struct Param_Rossler{
-	float A;
-	float B;
-	float C;
+	double A;
+	double B;
+	double C;
 }Param_Rossler_s;
 
 //Parametres
@@ -65,7 +65,7 @@ Param setRossler(Param_Rossler R, Param P){
 }
 
 //remplissage des parametres
-Param setParamLorenz(Param param, float B, float S, float P){
+Param setParamLorenz(Param param, double B, double S, double P){
 	Param_Lorenz parametersL;
 	parametersL = (Param_Lorenz)malloc(sizeof(Param_Lorenz_s));
 
@@ -76,7 +76,7 @@ Param setParamLorenz(Param param, float B, float S, float P){
 	return setLorenz(parametersL,param);
 }
 
-Param setParamVanDerPol(Param param, float K, float M, float B, float S, float P, float Q){
+Param setParamVanDerPol(Param param, double K, double M, double B, double S, double P, double Q){
 
 	Param_VanDerPol parametersV;
 	parametersV = (Param_VanDerPol)malloc(sizeof(Param_VanDerPol_s));
@@ -92,7 +92,7 @@ Param setParamVanDerPol(Param param, float K, float M, float B, float S, float P
 
 }
 
-Param setParamRossler(Param param, float A, float B, float C){
+Param setParamRossler(Param param, double A, double B, double C){
 	Param_Rossler parametersR;
 	parametersR = (Param_Rossler)malloc(sizeof(Param_Rossler_s));
 
@@ -107,27 +107,27 @@ Param setParamRossler(Param param, float A, float B, float C){
 
 
 //Recupere la valeur de x de la position
-float get_x (Coord position){
+double get_x (Coord position){
 	return position->x;
 }
 
 //Recupere la valeur de y de la position
-float get_y (Coord position){
+double get_y (Coord position){
 	return position->y;
 }
 
 //Recupere la valeur de z de la position
-float get_z(Coord position){
+double get_z(Coord position){
 	return position->z;
 }
 
 //Recupere la valeur de temps de la position
-float get_t (Coord position){
+double get_t (Coord position){
 	return position->t;
 }
 
 //Création d'une nouvelle coordonnees
-Coord new_coord(float t, float x, float y, float z){
+Coord new_coord(double t, double x, double y, double z){
 	Coord position;
 	position = (Coord)malloc(sizeof(Coordonnees_s));
 	
@@ -140,12 +140,12 @@ Coord new_coord(float t, float x, float y, float z){
 }
 
 //Calcul de la nouvelle position - Attracteur de Lorenz
-Coord position_next_Lorenz(Coord point, float dt, float B, float P, float S){
+Coord position_next_Lorenz(Coord point, double dt, double B, double P, double S){
 	//Calcul des nouvelles coordonnees
-	float new_x = get_x(point) + (S * (get_y(point) - get_x(point) ) ) * dt;
-	float new_y = get_y(point) + (get_x(point) * (P - get_z(point) ) - get_y(point) ) * dt;
-	float new_z = get_z(point) + (get_x(point) * get_y(point) - B * get_z(point)) * dt;
-	float new_t = get_t(point) + dt;
+	double new_x = get_x(point) + (S * (get_y(point) - get_x(point) ) ) * dt;
+	double new_y = get_y(point) + (get_x(point) * (P - get_z(point) ) - get_y(point) ) * dt;
+	double new_z = get_z(point) + (get_x(point) * get_y(point) - B * get_z(point)) * dt;
+	double new_t = get_t(point) + dt;
 	
 	//Mise à jour de point
 	point = new_coord(new_t, new_x, new_y, new_z);
@@ -155,12 +155,12 @@ Coord position_next_Lorenz(Coord point, float dt, float B, float P, float S){
 }
 
 //Calcul de la nouvelle position - Attracteur de Van Der Pol
-Coord position_next_VanDerPol(Coord point, float dt, float k, float m, float b, float s, float p, float q){
+Coord position_next_VanDerPol(Coord point, double dt, double k, double m, double b, double s, double p, double q){
 	//Calcul des nouvelles coordonnees
-	float new_x = get_x(point) + (k * (get_y(point) + m * get_x(point)*(b-get_y(point)*get_y(point) ) ) ) * dt;
-	float new_y = get_y(point) + (-get_x(point) + s * get_z(point) ) * dt;
-	float new_z = get_z(point) + ( p * get_x(point) - q * get_y(point))  * dt;
-	float new_t = get_t(point) + dt;
+	double new_x = get_x(point) + (k * (get_y(point) + m * get_x(point)*(b-get_y(point)*get_y(point) ) ) ) * dt;
+	double new_y = get_y(point) + (-get_x(point) + s * get_z(point) ) * dt;
+	double new_z = get_z(point) + ( p * get_x(point) - q * get_y(point))  * dt;
+	double new_t = get_t(point) + dt;
 	
 	//Mise à jour de point
 	point = new_coord(new_t, new_x, new_y, new_z);
@@ -169,12 +169,12 @@ Coord position_next_VanDerPol(Coord point, float dt, float k, float m, float b, 
 }
 
 //Calcul de la nouvelle position - Attracteur de Rössler
-Coord position_next_Rossler(Coord point, float dt, float a, float b, float c){
+Coord position_next_Rossler(Coord point, double dt, double a, double b, double c){
 	//Calcul des nouvelles coordonnees
-	float new_x = get_x(point) - ((get_y(point) + get_z(point))) * dt;
-	float new_y = get_y(point) + (get_x(point) + a * get_y(point) ) * dt;
-	float new_z = get_z(point) + ( a + get_x(point) * get_z(point) - c * get_z(point))  * dt;
-	float new_t = get_t(point) + dt;
+	double new_x = get_x(point) - ((get_y(point) + get_z(point))) * dt;
+	double new_y = get_y(point) + (get_x(point) + a * get_y(point) ) * dt;
+	double new_z = get_z(point) + ( a + get_x(point) * get_z(point) - c * get_z(point))  * dt;
+	double new_t = get_t(point) + dt;
 	
 	//Mise à jour de point
 	point = new_coord(new_t, new_x, new_y, new_z);

@@ -14,17 +14,17 @@ void vide_buffer(){
 void choix_dt(float * dt){
     printf("\nVoici venu le temps de regler l'increment de temps.");
     printf("\n\tAttention, plus l'increment sera petit, plus les calculs seront nombreux.");
-    printf("\n\t dt min = 0.05s et dt max = 1s.\n");
+    printf("\n\t dt min = 0.0005s et dt max = 0.01s.\n");
     scanf("%f",dt);
     
-    if ((*dt) < 0.05){
-        (*dt) = 0.05;
+    if ((*dt) < 0.0005){
+        (*dt) = 0.0005;
     }else{
-        if ((*dt)>1){
-            (*dt) = 1;
+        if ((*dt)>0.01){
+            (*dt) = 0.01;
         }
     }
-    printf("\n\t-> dt = %.2f s",(*dt));
+    printf("\n\t-> dt = %.4f s",(*dt));
 
     vide_buffer(); //on vide le buffer
 }
@@ -52,9 +52,9 @@ void choix_Tmax(float * Tmax){
 Param choix_param(int mode, char * LOG){ 
     Param parameters;
     int defaut = 1;
-    float B, P, S;
-    float K, M, Q;
-    float A, C;
+    double B, P, S;
+    double K, M, Q;
+    double A, C;
 
     printf("\n\nRentrons un peu plus dans les détails et choisissons les parametres.\n");
     printf("Voulez-vous les parametres par défaut ?");
@@ -70,7 +70,7 @@ Param choix_param(int mode, char * LOG){
             switch(mode){
                 case 0: //Lorenz
                     printf("\"B P S\"\n");
-                    scanf("%f %f %f",&B,&P,&S);
+                    scanf("%lf %lf %lf",&B,&P,&S);
 
                     parameters = setParamLorenz(parameters, B, S, P); // On remplit parameters avec les parametres entrés
 
@@ -78,14 +78,14 @@ Param choix_param(int mode, char * LOG){
 
                 case 1: //Van Der Pol
                     printf("\"K M B S P Q\"\n");
-                    scanf("%f %f %f %f %f %f",&K,&M,&B,&S,&P,&Q); 
+                    scanf("%lf %lf %lf %lf %lf %lf",&K,&M,&B,&S,&P,&Q); 
                     
                     parameters = setParamVanDerPol(parameters, K,M,B,S,P,Q); // On remplit parameters avec les parametres entrés
                     break;
 
                 case 2: //Rossler        
                     printf("\"A B C\"\n");
-                    scanf("%f %f %f",&A,&B,&C);
+                    scanf("%lf %lf %lf",&A,&B,&C);
 
                     parameters = setParamRossler(parameters, A,B,C); // On remplit parameters avec les parametres entrés
                     break;
@@ -119,7 +119,7 @@ Param choix_param(int mode, char * LOG){
                     w_log(LOG, "[ERROR] Aucun mode choisi."); 
                     break;
             }
-            
+
             break;
 
         default: //Choix inexistant, on ecrit une erreur et on met les parametres par défaut.
@@ -153,7 +153,7 @@ Param choix_param(int mode, char * LOG){
 }
 
 Coord choix_position(int mode, char * LOG){
-    float x,y,z;
+    double x,y,z;
     int defaut = 1;
 
     // On demande d'abord si on veut les valeurs par défaut ou non
@@ -169,7 +169,7 @@ Coord choix_position(int mode, char * LOG){
             w_log(LOG, "Choix de la position initiale."); //Ecriture dans le log
 
             printf("\nEntrez la position initiale dans le format \"x y z\"\n");
-            scanf("%f %f %f",&x,&y,&z);
+            scanf("%lf %lf %lf",&x,&y,&z);
             printf("\n\t-> Position initiale : x=%.2f y=%.2f z=%.2f\n",x,y,z);
 
             vide_buffer(); //on vide le buffer
@@ -220,7 +220,7 @@ void choix_mode(int * mode, char * LOG){
 
     printf("===============================================================\n");
     printf("================ Modélisation de Trajectoires =================\n");
-    printf("===============================================================\n\n");
+    printf("===============================================================\n\v\n");
     printf("Bienvenue sur ce projet de modélisation de trajectoire d'un point.\n\n");
     printf("Sont proposés ici, trois attracteurs étranges : \n");
     printf("\t 0. Attracteur de Lorenz\n");
