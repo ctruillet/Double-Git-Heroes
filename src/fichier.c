@@ -3,7 +3,7 @@
 #include "../include/log.h"
 
 /*
-Derniere modification : 2018-12-02 17:28:04
+Derniere modification : 2018-12-02 23:15:43
 Par : Clement
 */
 
@@ -21,8 +21,9 @@ void init_fichier(const char * FICHIER, char * LOG){
   w_log(LOG,"Création du fichier .dat");
 }
 
+//On ecrit dans le fichier .dat dans le format "t x y z"
 int w_fichier(FILE* fichier, Coord point){
+
 	fprintf(fichier, "%f %f %f %f\n", get_t(point) , get_x(point), get_y(point) , get_z(point) );
 	return 0;
-	
 }

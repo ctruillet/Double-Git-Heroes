@@ -4,7 +4,7 @@
 #include "../include/gnuplot.h"
 
 /*
-Derniere modification : 2018-12-02 17:28:11
+Derniere modification : 2018-12-02 23:14:08
 Par : Clement
 */
 
@@ -13,6 +13,9 @@ Par : Clement
 	Cette librairie appelle le fichier .sh qui lance gnuplot avec les bons parametres.
 */
   
+//Fonction qui appelle le bon fichier de parametres en fonction du mode
+//En fait, on a ici un fichier .sh par attracteur pour le titre du graphe.
+//Sinon, il n'y a aucune difference entre eux
 void trace_courbe(int mode, const char * FICHIER, char * LOG){
 	
 	w_log(LOG, "Ouverture de Gnuplot.");
