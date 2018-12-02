@@ -60,9 +60,9 @@ void choix_Tmax(float * Tmax){
 Param choix_param(int mode, char * LOG){ 
     Param parameters;
     int defaut = 1;
-    double B, P, S;
-    double K, M, Q;
-    double A, C;
+    double B=0, P=0, S=0;
+    double K=0, M=0, Q=0;
+    double A=0, C=0;
 
     printf("\n\nRentrons un peu plus dans les détails et choisissons les parametres.\n");
     printf("Voulez-vous les parametres par défaut ?");
@@ -205,7 +205,7 @@ Coord choix_position(int mode, char * LOG){
                     x = 0.2;
                     y = 0.2;
                     z = 0.2;
-                    printf("\n\t-> Position initiale : x=0.2 y=0.2 z=0.2\n");
+                    printf("\n\t-> Position initiale : x=0.1 y=0.1 z=0.1\n");
                     break;
 
                 case 2: //Rossler
