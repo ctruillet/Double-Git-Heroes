@@ -35,15 +35,19 @@ double get_z(Coord position);
 //Recupere la valeur de t de la position
 double get_t (Coord position);
 
+//Recupere les parametres stockés
+void get_Param_Lorenz(Param param, double *B, double *P, double *S);
+void get_Param_VanDerPol(Param param, double *K, double *M, double *B, double *S, double *P, double *Q);
+void get_Param_Rossler(Param param, double *A, double *B, double *C);
 
 //Création d'une nouvelle coordonnees
 Coord new_coord(double t, double x, double y, double z);
 
 //Calcul de la nouvelle position - Attracteur de Lorenz
-Coord position_next_Lorenz(Coord point, double dt, double B, double P, double S);
+Coord position_next_Lorenz(Coord point, Param param, double dt);
 
 //Calcul de la nouvelle position - Attracteur de Van der Pol
-Coord position_next_VanDerPol(Coord point, double dt, double K, double M, double B, double S, double P, double Q);
+Coord position_next_VanDerPol(Coord point, Param param, double dt);
 
 //Calcul de la nouvelle position - Attracteur de Rössler
-Coord position_next_Rossler(Coord point, double dt, double A, double B,double C);
+Coord position_next_Rossler(Coord point, Param param, double dt);

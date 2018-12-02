@@ -33,7 +33,7 @@ void choix_dt(float * dt){
 void choix_Tmax(float * Tmax){
     printf("\nNonobstant l'envie de dessiner un attracteur jusqu'à un temps infini, il vous est demandé de fournir un temps d'arrêt.");
     printf("\n\tBien evidement, nois veillerons a ne pas recevoir un temps trop grand ou nul.");
-    printf("\n\tC'est pour celà qu'est fixé une valeur minimum et maximum Tmin = 10s et Tmax = 10000s.\n");
+    printf("\n\tC'est pour celà qu'est fixée une valeur minimum et maximum Tmin = 10s et Tmax = 10000s.\n");
     scanf("%f",Tmax);
     
     if ((*Tmax) < 10){

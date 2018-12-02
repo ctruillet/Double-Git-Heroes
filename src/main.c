@@ -66,13 +66,13 @@ int main(int argc, char *argv[]){
 		while (get_t(point) <= Tmax){
 			switch(mode){
 				case 0: //Lorenz
-					point = position_next_Lorenz(point, dt, 8/3, 28, 10);
+					point = position_next_Lorenz(point, parameters, dt);
 					break;
 				case 1:  //Van Der Pol
-					point = position_next_VanDerPol(point, dt, 0.02, 4, 0.2, 0.2, 10, 0.1);
+					point = position_next_VanDerPol(point, parameters, dt);
 					break;
 				case 2: // Rössler
-					point = position_next_Rossler(point, dt, 0.2, 0.2, 14);
+					point = position_next_Rossler(point, parameters, dt);
 					break;
 				default:
 					w_log(LOG,"[ERROR] Pas d\'attracteur selectionné.");

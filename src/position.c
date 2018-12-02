@@ -41,25 +41,36 @@ typedef union Param{
 	Param_Rossler rossler;
 }Param_s;
 
+//Création d'une nouvelle coordonnees
+Coord new_coord(double t, double x, double y, double z){
+	Coord position;
+	position = (Coord)malloc(sizeof(Coordonnees_s));
+	
+	position->t = t;
+	position->x = x;
+	position->y = y;
+	position->z = z;
+	
+	return position;
+}
 
 //Fonctions assignant les parametres du mode choisis dans l'union
 Param setLorenz(Param_Lorenz L, Param P){
 	P = (Param)malloc(sizeof(Param_s));
-	P->lorenz = (Param_Lorenz)&L;
-
+	P->lorenz = (Param_Lorenz)L;
 	return P;
 }
 
 Param setVanDerPol(Param_VanDerPol V, Param P){
 	P = (Param)malloc(sizeof(Param_s));
-	P->vanderpol = (Param_VanDerPol)&V;
+	P->vanderpol = (Param_VanDerPol)V;
 		
 	return P;
 }
  
 Param setRossler(Param_Rossler R, Param P){
 	P = (Param)malloc(sizeof(Param_s));
-	P->rossler = (Param_Rossler)&R;
+	P->rossler = (Param_Rossler)R;
 		
 	return P;
 }
@@ -68,7 +79,7 @@ Param setRossler(Param_Rossler R, Param P){
 Param setParamLorenz(Param param, double B, double S, double P){
 	Param_Lorenz parametersL;
 	parametersL = (Param_Lorenz)malloc(sizeof(Param_Lorenz_s));
-
+	
 	parametersL->B = B;
 	parametersL->P = P;
 	parametersL->S = S;
@@ -126,21 +137,35 @@ double get_t (Coord position){
 	return position->t;
 }
 
-//Création d'une nouvelle coordonnees
-Coord new_coord(double t, double x, double y, double z){
-	Coord position;
-	position = (Coord)malloc(sizeof(Coordonnees_s));
-	
-	position->t = t;
-	position->x = x;
-	position->y = y;
-	position->z = z;
-	
-	return position;
+//Recupere les parametres stockés - Lorenz
+void get_Param_Lorenz(Param param, double *B, double *P, double *S){
+	(*B) = param->lorenz->B;
+	(*P) = param->lorenz->P;
+	(*S) = param->lorenz->S;
+}
+
+//Recupere les parametres stockés - Van Der Pol
+void get_Param_VanDerPol(Param param, double *K, double *M, double *B, double *S, double *P, double *Q){
+	(*K) = param->vanderpol->K;
+	(*M) = param->vanderpol->M;
+	(*B) = param->vanderpol->B;
+	(*S) = param->vanderpol->S;
+	(*P) = param->vanderpol->P;
+	(*Q) = param->vanderpol->Q;
+}
+
+//Recupere les parametres stockés - Rossler
+void get_Param_Rossler(Param param, double *A, double *B, double *C){
+	(*A) = param->rossler->A;
+	(*B) = param->rossler->B;
+	(*C) = param->rossler->C;
 }
 
 //Calcul de la nouvelle position - Attracteur de Lorenz
-Coord position_next_Lorenz(Coord point, double dt, double B, double P, double S){
+Coord position_next_Lorenz(Coord point, Param param, double dt){
+	double B,P,S;
+	get_Param_Lorenz(param, &B, &P, &S); //On assigne la bonne valeur
+
 	//Calcul des nouvelles coordonnees
 	double new_x = get_x(point) + (S * (get_y(point) - get_x(point) ) ) * dt;
 	double new_y = get_y(point) + (get_x(point) * (P - get_z(point) ) - get_y(point) ) * dt;
@@ -155,11 +180,14 @@ Coord position_next_Lorenz(Coord point, double dt, double B, double P, double S)
 }
 
 //Calcul de la nouvelle position - Attracteur de Van Der Pol
-Coord position_next_VanDerPol(Coord point, double dt, double k, double m, double b, double s, double p, double q){
+Coord position_next_VanDerPol(Coord point, Param param, double dt){
+	double K, M, B, S, P, Q;
+	get_Param_VanDerPol(param, &K, &M, &B, &S, &P, &Q); //On assigne la bonne valeur
+
 	//Calcul des nouvelles coordonnees
-	double new_x = get_x(point) + (k * (get_y(point) + m * get_x(point)*(b-get_y(point)*get_y(point) ) ) ) * dt;
-	double new_y = get_y(point) + (-get_x(point) + s * get_z(point) ) * dt;
-	double new_z = get_z(point) + ( p * get_x(point) - q * get_y(point))  * dt;
+	double new_x = get_x(point) + (K * (get_y(point) + M * get_x(point)*(B-get_y(point)*get_y(point) ) ) ) * dt;
+	double new_y = get_y(point) + (-get_x(point) + S * get_z(point) ) * dt;
+	double new_z = get_z(point) + ( P * get_x(point) - Q * get_y(point))  * dt;
 	double new_t = get_t(point) + dt;
 	
 	//Mise à jour de point
@@ -169,11 +197,14 @@ Coord position_next_VanDerPol(Coord point, double dt, double k, double m, double
 }
 
 //Calcul de la nouvelle position - Attracteur de Rössler
-Coord position_next_Rossler(Coord point, double dt, double a, double b, double c){
+Coord position_next_Rossler(Coord point, Param param, double dt){
+	double A, B, C;
+	get_Param_Rossler(param, &A, &B, &C); //On assigne la bonne valeur
+
 	//Calcul des nouvelles coordonnees
 	double new_x = get_x(point) - ((get_y(point) + get_z(point))) * dt;
-	double new_y = get_y(point) + (get_x(point) + a * get_y(point) ) * dt;
-	double new_z = get_z(point) + ( a + get_x(point) * get_z(point) - c * get_z(point))  * dt;
+	double new_y = get_y(point) + (get_x(point) + A * get_y(point) ) * dt;
+	double new_z = get_z(point) + ( B + get_x(point) * get_z(point) - C * get_z(point))  * dt;
 	double new_t = get_t(point) + dt;
 	
 	//Mise à jour de point
