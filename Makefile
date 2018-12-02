@@ -6,12 +6,15 @@ INCLUDE=./include
 CFLAGS=-Wall -g
 SRC=./src/entrees.c ./src/fichier.c ./src/gnuplot.c ./src/log.c ./src/position.c ./src/main.c
 OBJ=$(SRC:.c=.o)
-EXEC=./bin/test.exe
+EXEC=./bin/attracteur.out
+EXEC_F=./bin/attracteur.exe
 
 all:$(EXEC)
 
 $(EXEC): $(OBJ) $(INCLUDE)/*.h
 	$(GCC) $(CFLAGS) -o $(EXEC) $(OBJ) -I$(INCLUDE) -L$(LIB) $(LIBFLAGS)
+	chmod u+rx bin/*.sh
+	mv $(EXEC) $(EXEC_F)
 	rm $(OBJ) 
 
 entrees.o: entrees.c $(INCLUDE)/entrees.h
@@ -33,5 +36,5 @@ main.o: main.c $(INCLUDE)/main.h
 	$(GCC) $(CFLAGS) -o main.o -c ./src/main.c
 	
 clean:
+	rm $(EXEC_F)
 	rm src/*.o
-	rm $(EXEC)

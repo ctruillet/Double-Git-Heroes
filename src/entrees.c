@@ -32,14 +32,14 @@ void choix_dt(float * dt){
 
 void choix_Tmax(float * Tmax){
     printf("\nNonobstant l'envie de dessiner un attracteur jusqu'à un temps infini, il vous est demandé de fournir un temps d'arrêt.");
-    printf("\n\tBien evidement, nois veillerons a ne pas recevoir un temps trop grand ou nul.");
+    printf("\n\tBien évidemment, nous veillerons a ne pas recevoir un temps trop grand ou nul.");
     printf("\n\tC'est pour celà qu'est fixée une valeur minimum et maximum Tmin = 10s et Tmax = 10000s.\n");
     scanf("%f",Tmax);
     
     if ((*Tmax) < 10){
         (*Tmax) = 10;
     }else{
-        if ((*Tmax)>10000){
+        if ((*Tmax) > 10000){
             (*Tmax) = 10000;
         }
     }
@@ -65,27 +65,29 @@ Param choix_param(int mode, char * LOG){
     switch(defaut){
         case 0:
             w_log(LOG, "Choix des parametres."); //Ecriture dans le log
-            printf("\n\nEntrez les parametres dans le format ");
+            printf("\n\nEntrez les parametres sous leurs formes décimale dans le format ");
 
             switch(mode){
                 case 0: //Lorenz
                     printf("\"B P S\"\n");
                     scanf("%lf %lf %lf",&B,&P,&S);
-
-                    parameters = setParamLorenz(parameters, B, S, P); // On remplit parameters avec les parametres entrés
+                    printf("\n\t-> B=%f P=%f S=%f\v",B,P,S);
+                    parameters = setParamLorenz(parameters, B, P, S); // On remplit parameters avec les parametres entrés
 
                     break;
 
                 case 1: //Van Der Pol
                     printf("\"K M B S P Q\"\n");
                     scanf("%lf %lf %lf %lf %lf %lf",&K,&M,&B,&S,&P,&Q); 
-                    
+                    printf("\n\t-> K=%f M=%f B=%f S=%f P=%f Q=%f\v",K,M,B,S,P,Q);
+
                     parameters = setParamVanDerPol(parameters, K,M,B,S,P,Q); // On remplit parameters avec les parametres entrés
                     break;
 
                 case 2: //Rossler        
                     printf("\"A B C\"\n");
                     scanf("%lf %lf %lf",&A,&B,&C);
+                    printf("\n\t-> A=%f B=%f C=%f\v",A,B,C);
 
                     parameters = setParamRossler(parameters, A,B,C); // On remplit parameters avec les parametres entrés
                     break;
@@ -102,16 +104,18 @@ Param choix_param(int mode, char * LOG){
 
             switch(mode){
                 case 0: //Lorenz
-                    parameters = setParamLorenz(parameters, 8/3, 10, 28); // On remplit parameters avec les parametre
-
+                    parameters = setParamLorenz(parameters, 8/3, 28, 10); // On remplit parameters avec les parametre
+                    printf("\n\t-> B=2.66 P=28 S=10\v");
                     break;
 
                 case 1: //Van Der Pol
                     parameters = setParamVanDerPol(parameters, 0.02, 4, 0.2, 0.2, 10, 0.1); // On remplit parameters avec les parametres
+                    printf("\n\t-> K=0.02 M=4 B=0.2 S=0.2 P=10 Q=0.1\v");
                     break;
 
                 case 2: //Rossler        
                     parameters = setParamRossler(parameters, 0.2, 0.2, 5.7); // On remplit parameters avec les parametres
+                    printf("\n\t-> A=0.2 B=0.2 C=5.7\v");
                     break;
                 
                 default:
@@ -127,16 +131,18 @@ Param choix_param(int mode, char * LOG){
 
             switch(mode){
                 case 0: //Lorenz
-                    parameters = setParamLorenz(parameters, 8/3, 10, 28); // On remplit parameters avec les parametre
-
+                    parameters = setParamLorenz(parameters, 8/3, 28, 10); // On remplit parameters avec les parametre
+                    printf("\n\t-> B=2.66 P=28 S=10\v");
                     break;
 
                 case 1: //Van Der Pol
                     parameters = setParamVanDerPol(parameters, 0.02, 4, 0.2, 0.2, 10, 0.1); // On remplit parameters avec les parametres
+                    printf("\n\t-> K=0.02 M=4 B=0.2 S=0.2 P=10 Q=0.1\v");
                     break;
 
                 case 2: //Rossler        
                     parameters = setParamRossler(parameters, 0.2, 0.2, 5.7); // On remplit parameters avec les parametres
+                    printf("\n\t-> A=0.2 B=0.2 C=5.7\v");
                     break;
                 
                 default:
@@ -184,18 +190,21 @@ Coord choix_position(int mode, char * LOG){
                     x = 1;
                     y = 2;
                     z = 3;
+                    printf("\n\t-> Position initiale : x=1 y=2 z=3\n");
                     break;
 
                 case 1: //Van Der Pol
                     x = 0.2;
                     y = 0.2;
                     z = 0.2;
+                    printf("\n\t-> Position initiale : x=0.2 y=0.2 z=0.2\n");
                     break;
 
                 case 2: //Rossler
                     x = 0;
                     y = 0;
                     z = 0;
+                    printf("\n\t-> Position initiale : x=0 y=0 z=0\n");
                     break;
             }
 
@@ -206,6 +215,7 @@ Coord choix_position(int mode, char * LOG){
             x = 0;
             y = 0;
             z = 0;
+            printf("\n\t-> Position initiale : x=0 y=0 z=0\n");
             break;
     }
 
