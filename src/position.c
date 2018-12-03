@@ -4,7 +4,7 @@
 #include "../include/log.h"
 
 /*
-Derniere modification : 2018-12-02 23:09:06
+Derniere modification : 2018-12-02 17:28:26
 Par : Clement
 */
 
@@ -17,6 +17,7 @@ typedef struct Coord{
 } Coordonnees_s;
 
 // Structures des parametres
+
 typedef struct Param_Lorenz{
 	double B;
 	double P;
@@ -39,14 +40,11 @@ typedef struct Param_Rossler{
 }Param_Rossler_s;
 
 //Parametres
-//Permet de stocker les parametres dans une seule structure (union)
 typedef union Param{
 	Param_Lorenz lorenz;
 	Param_VanDerPol vanderpol;
 	Param_Rossler rossler;
 }Param_s;
-
-
 
 //Création d'une nouvelle coordonnees
 Coord new_coord(double t, double x, double y, double z){
@@ -82,14 +80,12 @@ Param setRossler(Param_Rossler R, Param P){
 	return P;
 }
 
-
-//Remplissage des parametres
+//remplissage des parametres
 Param setParamLorenz(Param param, double B, double P, double S){
 	Param_Lorenz parametersL;
-	parametersL = (Param_Lorenz)malloc(sizeof(Param_Lorenz_s)); //On assigne la memoire
+	parametersL = (Param_Lorenz)malloc(sizeof(Param_Lorenz_s));
 	
-	//On remplit
-	parametersL->B = B; 
+	parametersL->B = B;
 	parametersL->P = P;
 	parametersL->S = S;
 
@@ -99,9 +95,8 @@ Param setParamLorenz(Param param, double B, double P, double S){
 Param setParamVanDerPol(Param param, double K, double M, double B, double S, double P, double Q){
 
 	Param_VanDerPol parametersV;
-	parametersV = (Param_VanDerPol)malloc(sizeof(Param_VanDerPol_s)); //On assigne la memoire
+	parametersV = (Param_VanDerPol)malloc(sizeof(Param_VanDerPol_s));
 
-	//On remplit
 	parametersV->K = K;
 	parametersV->M = M;
 	parametersV->B = B;
@@ -110,18 +105,19 @@ Param setParamVanDerPol(Param param, double K, double M, double B, double S, dou
 	parametersV->Q = Q;
 
 	return setVanDerPol(parametersV,param);
+
 }
 
 Param setParamRossler(Param param, double A, double B, double C){
 	Param_Rossler parametersR;
-	parametersR = (Param_Rossler)malloc(sizeof(Param_Rossler_s)); //On assigne la memoire
+	parametersR = (Param_Rossler)malloc(sizeof(Param_Rossler_s));
 
-	//On remplit
 	parametersR->A = A;
 	parametersR->B = B;
 	parametersR->C = C;
 
 	return setRossler(parametersR,param);
+
 }
 
 
@@ -169,8 +165,6 @@ void get_Param_Rossler(Param param, double *A, double *B, double *C){
 	(*B) = param->rossler->B;
 	(*C) = param->rossler->C;
 }
-
-
 
 //Calcul de la nouvelle position - Attracteur de Lorenz
 Coord position_next_Lorenz(Coord point, Param param, double dt){

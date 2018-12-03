@@ -3,9 +3,6 @@
 #include <time.h>
 #include "../include/log.h"
 
-
-//Fonction qui crée et initialise le fichier .log
-//Prend un tableau de char en entrée afin de stocker le nom du fichier à l'interieur
 void crea_log(char * FICHIER){
   time_t temps;
   struct tm date;
@@ -15,7 +12,7 @@ void crea_log(char * FICHIER){
   date=*localtime(&temps);
 
   // Remplissage de la chaîne avec en date_heure
-  strftime(FICHIER, 128, "../log/%m-%d-%Y_%H.%M.%S.log", &date); //Format "12-02-2018_20_40_07.log"
+  strftime(FICHIER, 128, "../log/%m-%d-%Y_%H.%M.%S.log", &date);
   
   // Ouverture et création du fichier .log
   FILE* fichier = NULL;
@@ -24,9 +21,9 @@ void crea_log(char * FICHIER){
   
   //Ecriture dans log
   w_log(FICHIER,"Création du fichier .log");
+
 }
 
-//Fonction d'écriture dans le fichier log
 int w_log(char * FICHIER, char * str){
   FILE* fichier = NULL;
   char heure[128];
@@ -49,7 +46,7 @@ int w_log(char * FICHIER, char * str){
     }
     else // Si echec de l'ouverture, on affiche un message d'erreur
     {
-        printf("Impossible d'ouvrir le fichier %s\n",FICHIER); //on affiche ce message d'erreur sur le terminal puisqu'on ne peut pas l'écrire dans le .log ...
+        printf("Impossible d'ouvrir le fichier %s\n",FICHIER);
         return 1;
     }
 }

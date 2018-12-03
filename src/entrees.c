@@ -8,11 +8,10 @@
 #define DT_MIN 0.0005
 
 /*
-Derniere modification : 2018-12-02 23:07:13
+Derniere modification : 2018-12-02 17:27:38
 Par : Clement
 */
 
-//Vide le buffer
 void vide_buffer(){
     int c = 0;
     while(c != '\n' && c != EOF){
@@ -20,7 +19,6 @@ void vide_buffer(){
     }
 }
 
-//Choix de dt
 void choix_dt(float * dt){
     printf("\nVoici venu le temps de regler l'increment de temps.");
     printf("\n\tAttention, plus l'increment sera petit, plus les calculs seront nombreux.");
@@ -39,7 +37,7 @@ void choix_dt(float * dt){
     vide_buffer(); //on vide le buffer
 }
 
-//Choix de Tmax, temps d'arrêt
+
 void choix_Tmax(float * Tmax){
     printf("\nNonobstant l'envie de dessiner un attracteur jusqu'à un temps infini, il vous est demandé de fournir un temps d'arrêt.");
     printf("\n\tBien évidemment, nous veillerons a ne pas recevoir un temps trop grand ou nul.");
@@ -58,7 +56,7 @@ void choix_Tmax(float * Tmax){
     vide_buffer(); //on vide le buffer
 }
 
-//Choix des parametres
+
 Param choix_param(int mode, char * LOG){ 
     Param parameters;
     int defaut = 1;
@@ -168,7 +166,6 @@ Param choix_param(int mode, char * LOG){
     return parameters;
 }
 
-//Choix de la position initiale
 Coord choix_position(int mode, char * LOG){
     double x,y,z;
     int defaut = 1;
@@ -234,7 +231,6 @@ Coord choix_position(int mode, char * LOG){
     return new_coord(0, x, y, z);;
 }
 
-//Choix du mode
 void choix_mode(int * mode, char * LOG){
     //Fonction de présentation du projet
     //En bref, un empilement de printf

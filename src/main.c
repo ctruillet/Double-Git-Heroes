@@ -7,7 +7,7 @@
 #include "../include/log.h"
 
 /*
-Derniere modification : 2018-12-02 23:07:07
+Derniere modification : 2018-12-02 17:28:35
 Par : Clement
 */
 
@@ -24,12 +24,11 @@ int main(int argc, char *argv[]){
 
 	/*Initialisation
 	* 	Création du fichier .log
-	*	Initialisation du fichier position.dat (situé dans ./data/)
+	*	Initialisation du fichier lorentz.dat (situé dans ./data/)
 	*	
 	*	Entrées
 	*		Position initiale
 	*		dt
-	*		Tmax
 	*		parametres
 	*/
 	
@@ -37,7 +36,6 @@ int main(int argc, char *argv[]){
 	crea_log(LOG); 				//Création du fichier log
 	init_fichier(DATA,LOG);		//Création du fichier lorentz.dat
 	
-
 	choix_mode(&mode,LOG); //Choix du mode;
 
 	Coord point = choix_position(mode, LOG); //Entrée de la position initiale
@@ -53,7 +51,7 @@ int main(int argc, char *argv[]){
 	
 	/*Calculs
 	*	Calcul des nouvelles positions
-	*	Stockage dans position.dat
+	*	Stockage dans lorentz.dat
 	*/
 	
 	
@@ -69,7 +67,7 @@ int main(int argc, char *argv[]){
 	
 		w_fichier(fichier, point); //On ecrit la position à t = 0
 		
-		while (get_t(point) <= Tmax){ //Calcul des positions jusqu'à Tmax
+		while (get_t(point) <= Tmax){
 			switch(mode){
 				case 0: //Lorenz
 					point = position_next_Lorenz(point, parameters, dt);
@@ -84,7 +82,7 @@ int main(int argc, char *argv[]){
 					w_log(LOG,"[ERROR] Pas d\'attracteur selectionné.");
 
 			}	
-			w_fichier(fichier, point); //Ecriture
+			w_fichier(fichier, point);
 		}
 		fclose(fichier);
 	}
