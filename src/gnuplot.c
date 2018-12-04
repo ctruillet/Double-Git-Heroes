@@ -13,7 +13,7 @@ Par : Clement
 	Cette librairie appelle le fichier .sh qui lance gnuplot avec les bons parametres.
 */
   
-void trace_courbe(int mode, const char * FICHIER, char * LOG){
+void trace_courbe(int mode, char * LOG){
 	
 	w_log(LOG, "Ouverture de Gnuplot.");
 

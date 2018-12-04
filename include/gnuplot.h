@@ -9,4 +9,4 @@ Par : Clement
 
  //Appelle .sh qui lance gnuplot avec les bons parametres
  //En fait, ça dessine la courbe.
- void trace_courbe(int mode, const char * FICHIER, char * LOG);
+ void trace_courbe(int mode, char * LOG);

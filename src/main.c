@@ -99,7 +99,7 @@ int main(int argc, char *argv[]){
 	*	Appel de trace_courbe (librairie Gnuplot)
 	*/
 	
-	trace_courbe(mode,DATA,LOG);
+	trace_courbe(mode,LOG);
 
 	w_log(LOG,"FIN.");
 	
