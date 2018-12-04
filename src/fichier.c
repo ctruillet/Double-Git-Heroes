@@ -18,9 +18,9 @@ void init_fichier(){
 	fclose(pos);//à enlever
 }
 
-void w_fichier(Coordonnees *point){
+void w_fichier(Coordonnees *point){ //creation fichier Lorenz.dat
 	FILE* pos= NULL;
-	pos= fopen("Lorentz.dat","a");
+	pos= fopen("Lorenz.dat","a");
 	if(pos!=NULL){
 		fprintf(pos, "%f\n%f\n%f\n",point->x, point->y, point->z);
 	}
@@ -34,3 +34,5 @@ void ​read_fichier​(​Coordonnees​ * point, ​float ​temps){
 		scanf(pos, "%f %f %f %f",temps, point->x, point->y, point->z);
 	}
 }
+
+//integrer la saisie sécus et les getters
