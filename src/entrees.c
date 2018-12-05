@@ -254,6 +254,7 @@ void choix_mode(int * mode, char * LOG){
             printf("\n\t-> Vous avez choisi l'attracteur de Lorenz");
             break;
         case 1:
+        
             w_log(LOG, "Choix de l'attracteur de Van Der Pol");
             printf("\n\t-> Vous avez choisi l'attracteur de  Van Der Pol");
             break;
