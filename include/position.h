@@ -29,11 +29,6 @@ double get_z(Coord position);
 //Recupere la valeur de t de la position
 double get_t (Coord position);
 
-//Recupere les parametres stockés
-void get_Param_Lorenz(Param param, double *B, double *P, double *S);
-void get_Param_VanDerPol(Param param, double *K, double *M, double *B, double *S, double *P, double *Q);
-void get_Param_Rossler(Param param, double *A, double *B, double *C);
-
 //Création d'une nouvelle coordonnees
 Coord new_coord(double t, double x, double y, double z);
 

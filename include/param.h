@@ -24,3 +24,8 @@ Param setRossler(Param_Rossler R, Param P);
 Param setParamLorenz(Param param, double B, double S, double P);
 Param setParamVanDerPol(Param param, double K, double M, double B, double S, double P, double Q);
 Param setParamRossler(Param param, double A, double B, double C);
+
+//Recupere les parametres stockés
+void get_Param_Lorenz(Param param, double *B, double *P, double *S);
+void get_Param_VanDerPol(Param param, double *K, double *M, double *B, double *S, double *P, double *Q);
+void get_Param_Rossler(Param param, double *A, double *B, double *C);
