@@ -1,38 +1,28 @@
-#ifndef__STDIO_H__
 #include <stdio.h>
-#define__STDIO_H__
-#endif
-#ifndef__FICHIER_H__
 #include "../include/fichier.h"
-#define__FICHIER_H__
-#endif
-#ifndef__POSITION_H__
-#include "../include/position.h"
-#define__POSITION_H__
-#endif
+#include "../include/log.h"
+
+/*
+Derniere modification : 2018-12-02 17:28:04
+Par : Clement
+*/
 
 
-void init_fichier(){
-	FILE* pos=NULL;
-	pos = fopen("../data/Lorentz.dat", "w+");
-	fclose(pos);//à enlever
+
+//Vider le fichier si il existe déjà, sinon, le vider	
+void init_fichier(const char * FICHIER, char * LOG){
+  FILE* fichier = NULL;
+  
+  // Ouverture et création du fichier .dat
+  fichier = fopen(FICHIER,"w+");
+  fclose(fichier);
+  
+  //Ecriture dans log
+  w_log(LOG,"Création du fichier .dat");
 }
 
-void w_fichier(Coordonnees *point){ //creation fichier Lorenz.dat
-	FILE* pos= NULL;
-	pos= fopen("Lorenz.dat","a");
-	if(pos!=NULL){
-		fprintf(pos, "%f\n%f\n%f\n",point->x, point->y, point->z);
-	}
-	fclose(pos);//à mettre à la fin du main
+int w_fichier(FILE* fichier, Coord point){
+	fprintf(fichier, "%f %f %f %f\n", get_t(point) , get_x(point), get_y(point) , get_z(point) );
+	return 0;
+	
 }
-
-void ​read_fichier​(​Coordonnees​ * point, ​float ​temps){
-	FILE* pos= NULL;
-	pos= fopen("Lorentz.dat","a");
-	if(pos!=NULL){
-		scanf(pos, "%f %f %f %f",temps, point->x, point->y, point->z);
-	}
-}
-
-//integrer la saisie sécus et les getters
