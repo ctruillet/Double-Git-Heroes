@@ -92,18 +92,20 @@ int chance_d(double * lf, char * c){
 	return 0;
 }
 
-
+//Fonction de choix de dt
 void choix_dt(float * dt){
 	int ch=0;
+
     printf("\nVoici venu le temps de regler l'increment de temps.");
     printf("\n\tAttention, plus l'increment sera petit, plus les calculs seront nombreux.");
     printf("\n\t dt min = 0.0005s et dt max = 0.01s.\n");
+
     while(lire_float(dt)==1 && ch<CHANCE){
 		ch++;
-		printf("dt?\n");
+		printf("dt : ");
 	}
     
-    if ((*dt) < DT_MIN){
+    if ((*dt) < DT_MIN){ //Permet d'avoir dt dans l'intervalle DT_MIN DT_MAX
         (*dt) = DT_MIN;
     }else{
         if ((*dt)>DT_MAX){
@@ -113,7 +115,7 @@ void choix_dt(float * dt){
     printf("\n\t-> dt = %.4f s",(*dt));
 }
 
-
+//Fonction du choix des parametres
 Param choix_param(int mode, char * LOG){ 
     Param parameters;
     int defaut = 1;
@@ -302,6 +304,7 @@ Param choix_param(int mode, char * LOG){
     return parameters;
 }
 
+//Choix du mode
 void choix_mode(int * mode, char * LOG){
     //Fonction de présentation du projet
     //En bref, un empilement de printf
@@ -362,7 +365,7 @@ void choix_Tmax(float * Tmax){
     printf("\n\t-> Tmax = %.2f s",(*Tmax));
 }
 
-
+//Choix de la position
 Coord choix_position(int mode, char * LOG){
     double x,y,z;
     int defaut = 1;
