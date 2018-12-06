@@ -18,12 +18,6 @@ void vide_buffer();
 void choix_mode(int * mode,char * LOG);
 
 
-// Choix des parametres
-Param choix_param(int mode, char * LOG);
-
-//Choix de dt
-void choix_dt(float * dt);
-
 int lire_int(float * d);
 
 int lire_float(float * f);
@@ -32,4 +26,3 @@ int lire_double(double * lf);
 
 int lire_chaine(char * s);
 
-int chance_d(double * lf, char * c);

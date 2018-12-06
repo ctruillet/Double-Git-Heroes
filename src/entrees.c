@@ -3,7 +3,7 @@
 #include "../include/entrees.h"
 #include "../include/log.h"
 
-#define CHANCES 2
+
 
 
 
@@ -74,15 +74,3 @@ int lire_chaine(char * s){
 }
 
 
-
-int chance_d(double * lf, char * c){
-	int ch;
-	printf("%s",c);
-	for(ch=0; lire_double (lf)==0 && ch<CHANCES; ch++){
-		printf("%s",c);
-	}
-	if(ch>=CHANCES){
-		return 1;
-	}
-	return 0;
-}

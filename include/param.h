@@ -5,7 +5,7 @@
 #define __PARAM_H__
 
 #ifndef __ENTREES_H__
-	#include entrees.h
+	#include "entrees.h"
 #endif
 
 #ifndef __POSITION_H__
@@ -39,15 +39,4 @@ Param choix_param(int mode, char * LOG);
 
 void choix_mode(int * mode, char * LOG);
 
-//set parametres par defaut
-void setDefParamLorenz(Param * parameters){
-	* parameters=setParamLorenz(* parameters, 8/3, 28, 10);
-}
-
-void setDefParamVanDerPol(Param * parameters){
-	* parameters=setParamLorenz(* parameters, 0.02, 4, 0.2, 0.2, 10, 0.1);
-}
-
-void setDefParamRossler(Param * parameters){
-	* parameters=setRossler(* parameters, 0.2, 0.2, 5.7);
-}
+int chance_d(double * lf, char * c);

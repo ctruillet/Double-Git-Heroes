@@ -5,7 +5,7 @@
 #define __POSITION_H__
 
 #ifndef __ENTREES_H__
-	#include entrees.h
+	#include "entrees.h"
 #endif
 
 #ifndef __PARAM_H__
@@ -50,6 +50,8 @@ Coord position_next_VanDerPol(Coord point, Param param, double dt);
 //Calcul de la nouvelle position - Attracteur de Rössler
 Coord position_next_Rossler(Coord point, Param param, double dt);
 
+//definie la position initiale
 Coord choix_position(int mode, char * LOG);
 
+//definie le temps d'observation de la trajectoire
 void choix_Tmax(float * Tmax);

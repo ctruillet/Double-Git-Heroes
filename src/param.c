@@ -6,14 +6,20 @@
 
 #define DT_MAX 0.01
 #define DT_MIN 0.0005
+#define CHANCES 2
 
-//conflis definitions?
 
-/*
-Derniere modification : 2018-12-05 15:42:43
-Par : Clement
-*/
-
+int chance_d(double * lf, char * c){ //chances d'écriture d'un double
+	int ch;
+	printf("%s",c);
+	for(ch=0; lire_double (lf)==0 && ch<CHANCES; ch++){ //si la lecture du double réussie et si l'utilisateur à fais moins de CHANCES erreurs
+		printf("%s",c);
+	}
+	if(ch>=CHANCES){
+		return 1;
+	}
+	return 0;
+}
 // Structures des parametres
 
 typedef struct Param_Lorenz{
@@ -89,6 +95,21 @@ void get_Param_Rossler(Param param, double *A, double *B, double *C){
 	(*B) = param->rossler->B;
 	(*C) = param->rossler->C;
 }
+
+
+//set parametres par defaut
+/*void setDefParamLorenz(Param  parameters){
+	parameters=setParamLorenz( parameters, 8/3, 28, 10);
+}
+
+void setDefParamVanDerPol(Param parameters){
+	parameters=setVanDerPol(parameters, 0.02, 4, 0.2, 0.2, 10, 0.1);
+}
+
+void setDefParamRossler(Param parameters){
+	parameters=setRossler(parameters, 0.2, 0.2, 5.7);
+}*/
+
 
 //remplissage des parametres
 
@@ -181,12 +202,12 @@ Param choix_param(int mode, char * LOG){
 						}
 					}
 					if(marque==0){
-						w_log(LOG, "reponse <parametres lorenz> invalide")
-						setDefParamLorenz(&parameters);
+						w_log(LOG, "reponse <parametres lorenz> invalide");
+						parameters = setParamLorenz(parameters, 8/3, 28, 10);
 						
 					}
 					else{
-						parameters = setParamLorenz(parameters, B, P, S); // On remplit parameters avec les parametres entrés
+						parameters = setParamLorenz(parameters, B, P, S);  // On remplit parameters avec les parametres entrés
 					}
                     break;
 
@@ -197,7 +218,7 @@ Param choix_param(int mode, char * LOG){
 								if (chance_d(&S, "S?\n")==0){
 									if (chance_d(&P, "P?\n")==0){
 										if (chance_d(&Q, "Q?\n")==0){
-											marque = 1;
+											marque = 1;                  // si toutes les entrees sont valides set marque à 1
 										}
 									}
 								}
@@ -205,9 +226,9 @@ Param choix_param(int mode, char * LOG){
 							}
 						}
 					}
-					if(marque==0){
-						w_log(LOG, "reponse <parametres Van Der Pol> invalide")
-						setDefParamVanDerPol(&parameters);
+					if(marque==0){ //si il y a eu une erreur
+						w_log(LOG, "reponse <parametres Van Der Pol> invalide");
+						parameters = setParamVanDerPol(parameters, 0.02, 4, 0.2, 0.2, 10, 0.1);  //parametres par defaut
 					}
 					else{
 						parameters = setParamVanDerPol(parameters, K,M,B,S,P,Q); // On remplit parameters avec les parametres entrés
@@ -220,14 +241,14 @@ Param choix_param(int mode, char * LOG){
                 case 2: //Rossler
 					if (chance_d(&A, "A?\n")==0){
 						if (chance_d(&B, "B?\n")==0){
-							if (chance_d(&C, "C?\n")==0){
+							if (chance_d(&C, "C?\n")==0){              // si toutes les entrees sont valides set marque à 1
 								marque = 1;
 							}
 						}
 					}
 					if(marque==0){
-						w_log(LOG, "reponse <parametres Rossler> invalide")
-						setDefParamRossler(&parameters);
+						w_log(LOG, "reponse <parametres Rossler> invalide");
+						parameters = setParamRossler(parameters, 0.2, 0.2, 5.7);
 					}
 					else{
 						parameters = setParamRossler(parameters, A,B,C); // On remplit parameters avec les parametres entrés
@@ -247,17 +268,17 @@ Param choix_param(int mode, char * LOG){
 
             switch(mode){
                 case 0: //Lorenz
-                    setDefParamLorenz(&parameters); // On remplit parameters avec les parametre par defaut
-                    printf("\n\t-> ß=%lf ρ=%lf σ=%lf\n",parameters->B,parameters->P,parameters->S);
+                    parameters = setParamLorenz(parameters, 8/3, 28, 10);  // On remplit parameters avec les parametre par defaut
+                    printf("\n\t-> ß=1 ρ=2 σ=3\n");
                     break;
 
                 case 1: //Van Der Pol
-                    setDefParamVanDerPol(&parameters); // On remplit parameters avec les parametres
+                    parameters = setParamVanDerPol(parameters, 0.02, 4, 0.2, 0.2, 10, 0.1); // On remplit parameters avec les parametres
                     printf("\n\t-> K=0.02 M=4 B=0.2 S=0.2 P=10 Q=0.1\n");
                     break;
 
                 case 2: //Rossler        
-                    setDefParamRossler(&parameters); // On remplit parameters avec les parametres
+                    parameters = setParamRossler(parameters, 0.2, 0.2, 5.7); // On remplit parameters avec les parametres
                     printf("\n\t-> A=0.2 B=0.2 C=5.7\n");
                     break;
                 
@@ -274,17 +295,17 @@ Param choix_param(int mode, char * LOG){
 
             switch(mode){
                 case 0: //Lorenz
-                    setDefParamLorenz(&parameters); // On remplit parameters avec les parametre
+                    parameters = setParamLorenz(parameters, 8/3, 28, 10); // On remplit parameters avec les parametre
                     printf("\n\t-> B=2.66 P=28 S=10\n");
                     break;
 
                 case 1: //Van Der Pol
-                    setDefParamVanDerPol(&parameters); // On remplit parameters avec les parametres
+                    parameters = setParamVanDerPol(parameters, 0.02, 4, 0.2, 0.2, 10, 0.1); // On remplit parameters avec les parametres
                     printf("\n\t-> K=0.02 M=4 B=0.2 S=0.2 P=10 Q=0.1\n");
                     break;
 
                 case 2: //Rossler        
-                    setDefParamRossler(&parameters); // On remplit parameters avec les parametres
+                    parameters = setParamRossler(parameters, 0.2, 0.2, 5.7); // On remplit parameters avec les parametres
                     printf("\n\t-> A=0.2 B=0.2 C=5.7\n");
                     break;
                 
