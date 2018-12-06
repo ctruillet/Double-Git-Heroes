@@ -2,12 +2,20 @@
 #include <stdlib.h>
 #include "../include/param.h"
 #include "../include/log.h"
+<<<<<<< HEAD
 #include "../include/entrees.h"
 
 #define DT_MAX 0.01
 #define DT_MIN 0.0005
 #define CHANCES 2
 
+=======
+
+/*
+Derniere modification : 2018-12-05 15:42:43
+Par : Clement
+*/
+>>>>>>> e0f2bb1073746678cdba7d17f6841cf277c06a80
 
 int chance_d(double * lf, char * c){ //chances d'écriture d'un double
 	int ch;
@@ -112,27 +120,6 @@ void setDefParamRossler(Param parameters){
 
 
 //remplissage des parametres
-
-void choix_dt(float * dt){
-	int ch=0;
-    printf("\nVoici venu le temps de regler l'increment de temps.");
-    printf("\n\tAttention, plus l'increment sera petit, plus les calculs seront nombreux.");
-    printf("\n\t dt min = 0.0005s et dt max = 0.01s.\n");
-    while(lire_float(dt)==1 && ch<CHANCES){
-		ch++;
-		printf("dt?\n");
-	}
-    
-    if ((*dt) < DT_MIN){
-        (*dt) = DT_MIN;
-    }else{
-        if ((*dt)>DT_MAX){
-            (*dt) = DT_MAX;
-        }
-    }
-    printf("\n\t-> dt = %.4f s",(*dt));
-}
-
 Param setParamLorenz(Param param, double B, double P, double S){
 	Param_Lorenz parametersL;
 	parametersL = (Param_Lorenz)malloc(sizeof(Param_Lorenz_s));
@@ -170,6 +157,7 @@ Param setParamRossler(Param param, double A, double B, double C){
 
 	return setRossler(parametersR,param);
 
+<<<<<<< HEAD
 }
 
 
@@ -358,4 +346,6 @@ void choix_mode(int * mode, char * LOG){
 
     //Vider le buffer
     vide_buffer();
+=======
+>>>>>>> e0f2bb1073746678cdba7d17f6841cf277c06a80
 }

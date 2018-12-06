@@ -26,3 +26,13 @@ int lire_double(double * lf);
 
 int lire_chaine(char * s);
 
+<<<<<<< HEAD
+=======
+int chance_d(double * lf, char * c);
+
+//Choix de Tmax
+void choix_Tmax(float * Tmax);
+
+//Choix du mode
+void choix_mode(int * mode, char * LOG);
+>>>>>>> e0f2bb1073746678cdba7d17f6841cf277c06a80
