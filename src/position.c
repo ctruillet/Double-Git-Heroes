@@ -3,22 +3,11 @@
 #include "../include/position.h"
 #include "../include/log.h"
 #include "../include/param.h"
-#include "../include/entrees.h"
-
-#define TMAX 5000
-#define TMIN 10
-
 
 /*
-Derniere modification : 2018-12-06 
-Par : valentin
+Derniere modification : 2018-12-02 17:28:26
+Par : Clement
 */
-
-//positions par defaut
-
-Coor defpos_Lorenz = new_coord(10, 1, 2, 3);
-Coor defpos_VanDerPol=new_coord(10, 0.2, 0.2, 0.2);
-Coor defpos_Rossler=new_coord(10, 0, 0, 0);
 
 //Structure de la position
 typedef struct Coord{
@@ -114,112 +103,4 @@ Coord position_next_Rossler(Coord point, Param param, double dt){
 	point = new_coord(new_t, new_x, new_y, new_z);
 	
 	return point;
-}
-
-Coord choix_position(int mode, char * LOG){
-    double x,y,z;
-    int defaut = 1;
-	int ch;
-
-    // On demande d'abord si on veut les valeurs par défaut ou non
-    printf("\n\nIl est maintenant temps de selectionner la position initiale.\n");
-    printf("\t 0. Je suis un(e) aventurier(e) et je veux explorer mon attracteur ! (choix de la position initiale)\n");
-    printf("\t 1. J'aime rester dans les sentiers battus (position initiale par défaut)\n");
-    lire_int(&defaut);
-
-
-    switch(defaut){
-        case 0: // Cas choix de la position
-            w_log(LOG, "Choix de la position initiale."); //Ecriture dans le log
-
-            printf("\nEntrez la position initiale\n");
-			printf("x?\n");
-			while(lire_double(&x)==1 && ch<CHANCES){
-				ch++;
-				printf("x?\n");
-			}
-			if(ch<CHANCES){
-				printf("y?\n");
-			}
-			while(lire_double(&y)==1 && ch<CHANCES){
-				ch++;
-				printf("y?\n");
-			}
-			if(ch<CHANCES){
-				printf("z?\n");
-			}
-			while(lire_double(&z)==1 && ch<CHANCES){
-				ch++;
-				printf("z?\n");
-			}
-			if (ch>=CHANCES){
-				w_log(LOG, "trops d'erreurs <choix de position>");
-				w_log(LOG, "Position nulle choisie");
-				x = 0;
-				y = 0;
-				z = 0;
-			}
-            printf("\n\t-> Position initiale : x=%.2lf y=%.2lf z=%.2lf\n",x,y,z);
-
-        break;
-
-        case 1: //Cas valeur par défaut
-            w_log(LOG, "Position initiale par défaut.");
-
-            switch(mode){
-                case 0: //Lorenz
-                    x = get_x(defpos_Lorenz);
-                    y = get_y(defpos_Lorenz);
-                    z = get_z(defpos_Lorenz);
-                    printf("\n\t-> Position initiale : x=%lf y=%lf z=%lf\n",x,y,z);
-                    break;
-
-                case 1: //Van Der Pol
-                    x = get_x(defpos_VanDerPol);
-                    y = get_y(defpos_VanDerPol);
-                    z = get_z(defpos_VanDerPol);
-                    printf("\n\t-> Position initiale : x=%lf y=%lf z=%lf\n",x,y,z);
-                    break;
-
-                case 2: //Rossler
-                    x = get_x(defpos_Rossler);
-                    y = get_y(defpos_Rossler);
-                    z = get_z(defpos_Rossler);
-                    printf("\n\t-> Position initiale : x=%lf y=%lf z=%lf\n",x,y,z);
-                    break;
-            }
-
-            break;
-
-        default:
-            w_log(LOG, "Position nulle choisie");
-            x = 0;
-            y = 0;
-            z = 0;
-            printf("\n\t-> Position initiale : x=0 y=0 z=0\n");
-            break;
-    }
-
-    //on renvoie la structure Coord remplie avec les parametres choisit
-    return new_coord(0, x, y, z);;
-}
-
-void choix_Tmax(float * Tmax){
-	int ch = 0;
-    printf("\nNonobstant l'envie de dessiner un attracteur jusqu'à un temps infini, il vous est demandé de fournir un temps d'arrêt.");
-    printf("\n\tBien évidemment, nous veillerons a ne pas recevoir un temps trop grand ou nul.");
-    printf("\n\tC'est pour celà qu'est fixée une valeur minimum et maximum Tmin = 10s et Tmax = 5000s.\n");
-    while(lire_float(Tmax)==1 && ch<CHANCES){
-		ch++;
-		printf("T?\n");
-	}
-    
-    if ((*Tmax) < TMIN){
-        (*Tmax) = TMIN;
-    }else{
-        if ((*Tmax) > TMAX){
-            (*Tmax) = TMAX;
-        }
-    }
-    printf("\n\t-> Tmax = %.2f s",(*Tmax));
 }
