@@ -4,7 +4,11 @@ LIB=./lib
 BIN=./bin
 INCLUDE=./include
 CFLAGS=-Wall -g
+<<<<<<< HEAD
 SRC=./src/entrees.c ./src/fichier.c ./src/gnuplot.c ./src/log.c ./src/position.c ./src/main.c ./src/param.c
+=======
+SRC=./src/entrees.c ./src/fichier.c ./src/gnuplot.c ./src/log.c ./src/position.c ./src/param.c ./src/main.c
+>>>>>>> 6be7515eb6e0d481e798299b9c29b1467c87d61b
 OBJ=$(SRC:.c=.o)
 EXEC=./bin/attracteur.out
 EXEC_F=./bin/attracteur.exe

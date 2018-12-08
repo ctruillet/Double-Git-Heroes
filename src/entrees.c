@@ -79,7 +79,6 @@ int lire_chaine(char * s){
 }
 
 
-
 int chance_d(double * lf, char * c){
 	int ch;
 	printf("%s",c);
@@ -378,5 +377,5 @@ Coord choix_position(int mode, char * LOG){
     }
 
     //on renvoie la structure Coord remplie avec les parametres choisit
-    return new_coord(0, x, y, z);;
+    return new_coord(0, x, y, z);
 }
