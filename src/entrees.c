@@ -100,6 +100,8 @@ void choix_dt(float * dt){
     printf("\n\tAttention, plus l'increment sera petit, plus les calculs seront nombreux.");
     printf("\n\t dt min = 0.0005s et dt max = 0.01s.\n");
 
+    printf("dt : ");
+
     while(lire_float(dt)==1 && ch<CHANCE){
 		ch++;
 		printf("dt : ");
@@ -112,7 +114,7 @@ void choix_dt(float * dt){
             (*dt) = DT_MAX;
         }
     }
-    printf("\n\t-> dt = %.4f s",(*dt));
+    printf("\n\t-> dt = %.4fs \n",(*dt));
 }
 
 //Fonction du choix des parametres
@@ -136,88 +138,33 @@ Param choix_param(int mode, char * LOG){
             printf("\n\nEntrez les parametres sous leurs formes décimales");
 
             switch(mode){
-                case 0: //Lorenz
-					if (chance_d(&B, "ß?\n")==0){
-						if (chance_d(&P, "ρ?\n")==0){
-							if (chance_d(&S, "σ?\n")==0){
-								marque = 1;
-							}
-						}
-					}
 
-					if(marque==0){
-						w_log(LOG, "[ERROR] Parametres invalides.");
-						parameters = setParamLorenz(parameters, B, P, S);
-						
-					}
-					else{
-						B = 0;
-						P = 0;
-						S = 0;
-						parameters = setParamLorenz(parameters, B, P, S); // On remplit parameters avec les parametres entrés
-					}
+                case 0: //Lorenz
+                    printf("\"ß ρ σ\"\n");
+                    scanf("%lf %lf %lf",&B,&P,&S);
+                    printf("\n\t-> B=%f P=%f S=%f\n",B,P,S);
+                    parameters = setParamLorenz(parameters, B, P, S); // On remplit parameters avec les parametres entrés
 
                     break;
 
-                case 1: //Van Der Pol 
-
-					if (chance_d(&K, "K?\n")==0){
-						if (chance_d(&M, "M?\n")==0){
-							if (chance_d(&B, "B?\n")==0){
-								if (chance_d(&S, "S?\n")==0){
-									if (chance_d(&P, "P?\n")==0){
-										if (chance_d(&Q, "Q?\n")==0){
-											marque = 1;
-										}
-									}
-								}
-								
-							}
-						}
-					}
-
-					if(marque==0){
-						w_log(LOG, "[ERROR] Parametres invalides.");
-						K=0.02;
-						M=4;
-						B=0.2;
-						S=0.2;
-						P=10;
-						Q=0.1;
-						parameters = setParamVanDerPol(parameters, K,M,B,S,P,Q);
-					}
-
-					else{
-						parameters = setParamVanDerPol(parameters, K,M,B,S,P,Q); // On remplit parameters avec les parametres entrés
-					}
-
+                case 1: //Van Der Pol
+                    printf("\"K M B S P Q\"\n");
+                    scanf("%lf %lf %lf %lf %lf %lf",&K,&M,&B,&S,&P,&Q); 
                     printf("\n\t-> K=%f M=%f B=%f S=%f P=%f Q=%f\n",K,M,B,S,P,Q);
 
+                    parameters = setParamVanDerPol(parameters, K,M,B,S,P,Q); // On remplit parameters avec les parametres entrés
                     break;
 
-                case 2: //Rossler
-					if (chance_d(&A, "A?\n")==0){
-						if (chance_d(&B, "B?\n")==0){
-							if (chance_d(&C, "C?\n")==0){
-								marque = 1;
-							}
-						}
-					}
-					if(marque==0){
-						w_log(LOG, "[ERROR] Parametres invalides.");
-						A = 0.2;
-						B=0.2;
-						C=5.7;
-						parameters = setParamRossler(parameters, A,B,C);
-					}
-					else{
-						parameters = setParamRossler(parameters, A,B,C); // On remplit parameters avec les parametres entrés
-					}
+                case 2: //Rossler        
+                    printf("\"A B C\"\n");
+                    scanf("%lf %lf %lf",&A,&B,&C);
                     printf("\n\t-> A=%f B=%f C=%f\n",A,B,C);
+
+                    parameters = setParamRossler(parameters, A,B,C); // On remplit parameters avec les parametres entrés
                     break;
                 
                 default:
-                    //Si etrangement aucun mode choisi, ce qui normalement ne devrais jamais arriver, mais on ne sait jamais (oui ce commentaire est trop long)
+                    //Si on on etrangement aucun mode choisi, ce qui normalement ne devrais jamais arriver, mais on ne sait jamais (oui ce commentaire est trop long)
                     w_log(LOG, "[ERROR] Aucun mode choisi."); 
                     break;
             }
@@ -350,6 +297,9 @@ void choix_Tmax(float * Tmax){
     printf("\nNonobstant l'envie de dessiner un attracteur jusqu'à un temps infini, il vous est demandé de fournir un temps d'arrêt.");
     printf("\n\tBien évidemment, nous veillerons a ne pas recevoir un temps trop grand ou nul.");
     printf("\n\tC'est pour celà qu'est fixée une valeur minimum et maximum Tmin = 10s et Tmax = 5000s.\n");
+
+    printf("Tmax : ");
+
     while(lire_float(Tmax)==1 && ch<CHANCE){
 		ch++;
 		printf("Tmax : ");
@@ -362,54 +312,31 @@ void choix_Tmax(float * Tmax){
             (*Tmax) = TMAX;
         }
     }
-    printf("\n\t-> Tmax = %.2f s",(*Tmax));
+    printf("\n\t-> Tmax = %.2fs",(*Tmax));
 }
 
 //Choix de la position
 Coord choix_position(int mode, char * LOG){
     double x,y,z;
     int defaut = 1;
-	int ch;
 
     // On demande d'abord si on veut les valeurs par défaut ou non
     printf("\n\nIl est maintenant temps de selectionner la position initiale.\n");
     printf("\t 0. Je suis un(e) aventurier(e) et je veux explorer mon attracteur ! (choix de la position initiale)\n");
     printf("\t 1. J'aime rester dans les sentiers battus (position initiale par défaut)\n");
-    lire_int(&defaut);
+    scanf("%d",&defaut);
 
+    vide_buffer(); //on vide le buffer
 
     switch(defaut){
         case 0: // Cas choix de la position
             w_log(LOG, "Choix de la position initiale."); //Ecriture dans le log
 
-            printf("\nEntrez la position initiale\n");
-			printf("x?\n");
-			while(lire_double(&x)==1 && ch<CHANCE){
-				ch++;
-				printf("x?\n");
-			}
-			if(ch<CHANCE){
-				printf("y?\n");
-			}
-			while(lire_double(&y)==1 && ch<CHANCE){
-				ch++;
-				printf("y?\n");
-			}
-			if(ch<CHANCE){
-				printf("z?\n");
-			}
-			while(lire_double(&z)==1 && ch<CHANCE){
-				ch++;
-				printf("z?\n");
-			}
-			if (ch>=CHANCE){
-				w_log(LOG, "[ERROR] Choix de position non conforme.");
-				w_log(LOG, "Position nulle choisie.");
-				x = 0;
-				y = 0;
-				z = 0;
-			}
-            printf("\n\t-> Position initiale : x=%.2lf y=%.2lf z=%.2lf\n",x,y,z);
+            printf("\nEntrez la position initiale dans le format \"x y z\"\n");
+            scanf("%lf %lf %lf",&x,&y,&z);
+            printf("\n\t-> Position initiale : x=%.2f y=%.2f z=%.2f\n",x,y,z);
+
+            vide_buffer(); //on vide le buffer
 
         break;
 
@@ -421,21 +348,21 @@ Coord choix_position(int mode, char * LOG){
                     x = 1;
                     y = 2;
                     z = 3;
-                    printf("\n\t-> Position initiale : x=1 y=2 z=3\n",x,y,z);
+                    printf("\n\t-> Position initiale : x=1 y=2 z=3\n");
                     break;
 
                 case 1: //Van Der Pol
                     x = 0.2;
                     y = 0.2;
                     z = 0.2;
-                    printf("\n\t-> Position initiale : x=0.2 y=0.2 z=0.2\n",x,y,z);
+                    printf("\n\t-> Position initiale : x=0.1 y=0.1 z=0.1\n");
                     break;
 
                 case 2: //Rossler
                     x = 0;
                     y = 0;
                     z = 0;
-                    printf("\n\t-> Position initiale : x=0 y0 z=0\n",x,y,z);
+                    printf("\n\t-> Position initiale : x=0 y=0 z=0\n");
                     break;
             }
 
