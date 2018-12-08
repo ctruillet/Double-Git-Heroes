@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 [10:02:42] Création du fichier .log
 [10:02:42] Création du fichier .dat
 [10:02:59] Choix de l'attracteur de Van Der Pol
@@ -9,15 +8,3 @@
 [10:03:43] Fin de la phase de Calcul.
 [10:03:43] Ouverture de Gnuplot.
 [10:03:46] FIN.
-=======
-[10:02:42] Création du fichier .log
-[10:02:42] Création du fichier .dat
-[10:02:59] Choix de l'attracteur de Van Der Pol
-[10:03:05] Position initiale par défaut.
-[10:03:43] Choix des parametres par défaut.
-[10:03:43] Fin de la phase d'Initialisation.
-[10:03:43] Début de la phase de Calcul.
-[10:03:43] Fin de la phase de Calcul.
-[10:03:43] Ouverture de Gnuplot.
-[10:03:46] FIN.
->>>>>>> clem

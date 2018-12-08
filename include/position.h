@@ -3,26 +3,10 @@
  */
 #define __POSITION_H__
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-#ifndef __ENTREES_H__
-	#include "entrees.h"
-#endif
-
-=======
->>>>>>> e0f2bb1073746678cdba7d17f6841cf277c06a80
 #ifndef __PARAM_H__
 	#include "param.h"
 #endif
 	
-
-=======
-#ifndef __PARAM_H__
-	#include "param.h"
-#endif
-	
-
->>>>>>> clem
 /*
 Derniere modification : 2018-12-02 17:43:52
 Par : Clement
@@ -54,18 +38,7 @@ Coord position_next_Lorenz(Coord point, Param param, double dt);
 Coord position_next_VanDerPol(Coord point, Param param, double dt);
 
 //Calcul de la nouvelle position - Attracteur de Rössler
-<<<<<<< HEAD
-<<<<<<< HEAD
 Coord position_next_Rossler(Coord point, Param param, double dt);
 
 //definie la position initiale
 Coord choix_position(int mode, char * LOG);
-
-//definie le temps d'observation de la trajectoire
-void choix_Tmax(float * Tmax);
-=======
-Coord position_next_Rossler(Coord point, Param param, double dt);
->>>>>>> e0f2bb1073746678cdba7d17f6841cf277c06a80
-=======
-Coord position_next_Rossler(Coord point, Param param, double dt);
->>>>>>> clem

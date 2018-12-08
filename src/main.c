@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-<<<<<<< HEAD
 #include "../include/param.h"
-=======
->>>>>>> clem
 #include "../include/position.h"
 #include "../include/entrees.h"
 #include "../include/fichier.h"
