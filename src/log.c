@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include "../include/log.h"
 
 void crea_log(char * FICHIER){
   time_t temps;
@@ -11,12 +12,15 @@ void crea_log(char * FICHIER){
   date=*localtime(&temps);
 
   // Remplissage de la chaîne avec en date_heure
-  strftime(FICHIER, 128, "%m%d%Y_%H%M%S.log", &date);
+  strftime(FICHIER, 128, "../log/%m-%d-%Y_%H.%M.%S.log", &date);
   
   // Ouverture et création du fichier .log
   FILE* fichier = NULL;
   fichier = fopen(FICHIER,"w+");
   fclose(fichier);
+  
+  //Ecriture dans log
+  w_log(FICHIER,"Création du fichier .log");
 
 }
 

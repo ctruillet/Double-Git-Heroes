@@ -1,0 +1,11 @@
+[18:17:02] Création du fichier .log
+[18:17:02] Création du fichier .dat
+[18:17:03] Choix de l'attracteur de Lorenz
+[18:17:03] Choix de la position initiale.
+[18:17:06] Choix des parametres.
+[18:17:09] [ERROR] Parametres invalides.
+[18:17:09] Fin de la phase d'Initialisation.
+[18:17:09] Début de la phase de Calcul.
+[18:17:09] Fin de la phase de Calcul.
+[18:17:09] Ouverture de Gnuplot.
+[18:17:15] FIN.
