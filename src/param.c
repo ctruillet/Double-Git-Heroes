@@ -84,21 +84,6 @@ void get_Param_Rossler(Param param, double *A, double *B, double *C){
 	(*C) = param->rossler->C;
 }
 
-
-//set parametres par defaut
-/*void setDefParamLorenz(Param  parameters){
-	parameters=setParamLorenz( parameters, 8/3, 28, 10);
-}
-
-void setDefParamVanDerPol(Param parameters){
-	parameters=setVanDerPol(parameters, 0.02, 4, 0.2, 0.2, 10, 0.1);
-}
-
-void setDefParamRossler(Param parameters){
-	parameters=setRossler(parameters, 0.2, 0.2, 5.7);
-}*/
-
-
 //remplissage des parametres
 Param setParamLorenz(Param param, double B, double P, double S){
 	Param_Lorenz parametersL;

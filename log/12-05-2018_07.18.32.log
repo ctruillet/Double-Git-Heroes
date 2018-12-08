@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [07:18:32] Création du fichier .log
 [07:18:32] Création du fichier .dat
 [07:18:33] Choix de l'attracteur de Lorenz
@@ -8,3 +9,15 @@
 [07:18:40] Fin de la phase de Calcul.
 [07:18:40] Ouverture de Gnuplot.
 [07:18:40] FIN.
+=======
+[07:18:32] Création du fichier .log
+[07:18:32] Création du fichier .dat
+[07:18:33] Choix de l'attracteur de Lorenz
+[07:18:35] Position initiale par défaut.
+[07:18:39] Choix des parametres par défaut.
+[07:18:39] Fin de la phase d'Initialisation.
+[07:18:39] Début de la phase de Calcul.
+[07:18:40] Fin de la phase de Calcul.
+[07:18:40] Ouverture de Gnuplot.
+[07:18:40] FIN.
+>>>>>>> clem

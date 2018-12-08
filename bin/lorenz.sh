@@ -4,5 +4,4 @@
 export DISPLAY=:0
 
 #On lance Gnuplot
-gnuplot ../data/gnuplot_param/lorenz_param 
-
+gnuplot ../data/gnuplot_param/lorenz_param

@@ -1,5 +1,6 @@
 #include <stdio.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "position.h"
 #define B 8/3
 #define P 28
@@ -66,6 +67,56 @@ double get_y (Coord position){
 double get_z(Coord position){
 	return position->z;
 }
+=======
+#include <stdlib.h>
+#include "../include/position.h"
+#include "../include/log.h"
+#include "../include/param.h"
+
+/*
+Derniere modification : 2018-12-02 17:28:26
+Par : Clement
+*/
+
+//Structure de la position
+typedef struct Coord{
+	double t; //temps
+	double x; 
+	double y;
+	double z;
+} Coordonnees_s;
+
+
+//Création d'une nouvelle coordonnees
+Coord new_coord(double t, double x, double y, double z){
+	Coord position;
+	position = (Coord)malloc(sizeof(Coordonnees_s));
+	
+	position->t = t;
+	position->x = x;
+	position->y = y;
+	position->z = z;
+	
+	return position;
+}
+
+
+
+//Recupere la valeur de x de la position
+double get_x (Coord position){
+	return position->x;
+}
+
+//Recupere la valeur de y de la position
+double get_y (Coord position){
+	return position->y;
+}
+
+//Recupere la valeur de z de la position
+double get_z(Coord position){
+	return position->z;
+}
+>>>>>>> clem
 
 //Recupere la valeur de temps de la position
 double get_t (Coord position){
@@ -122,5 +173,9 @@ Coord position_next_Rossler(Coord point, Param param, double dt){
 	point = new_coord(new_t, new_x, new_y, new_z);
 	
 	return point;
+<<<<<<< HEAD
 }
 >>>>>>> fry
+=======
+}
+>>>>>>> clem

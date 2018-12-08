@@ -5,4 +5,7 @@ export DISPLAY=:0
 
 #On lance Gnuplot
 gnuplot ../data/gnuplot_param/vanderpol_param
+<<<<<<< HEAD
 
+=======
+>>>>>>> clem
