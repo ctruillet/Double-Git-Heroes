@@ -1,11 +1,11 @@
 <p>
-  <a href="https://github.com/ClementTruillet/Double-Git-Heroes/blob/master/doc/enonce.pdf">Lire l'énoncé</a><br>
+  <a href="https://github.com/ClementTruillet/Double-Git-Heroes/blob/master/doc/enonce.pdf" target="_blank">Lire l'énoncé</a><br>
   <br/>
   <br />
-  <a href="https://github.com/ClementTruillet/Double-Git-Heroes/blob/master/doc/Guide%20d%E2%80%99utilisation.pdf">Guide d'utilisation</a> <br>
+  <a href="https://github.com/ClementTruillet/Double-Git-Heroes/blob/master/doc/Guide%20d%E2%80%99utilisation.pdf" target="_blank">Guide d'utilisation</a> <br>
   <br>
-  <a href="https://github.com/ClementTruillet/Double-Git-Heroes/blob/master/doc/Rapport%201.pdf">Lire le premier Rapport</a> <br>
-  <a href="https://github.com/ClementTruillet/Double-Git-Heroes/blob/master/doc/Rapport%202.pdf">Lire le deuxieme Rapport</a>
+  <a href="https://github.com/ClementTruillet/Double-Git-Heroes/blob/master/doc/Rapport%201.pdf" target="_blank">Lire le premier Rapport</a> <br>
+  <a href="https://github.com/ClementTruillet/Double-Git-Heroes/blob/master/doc/Rapport%202.pdf" target="_blank">Lire le deuxieme Rapport</a>
      <br>
 </p>
 
