@@ -17,8 +17,17 @@ void vide_buffer();
 //Choisir un mode + Accueil 
 void choix_mode(int * mode,char * LOG);
 
-//Chois de la position
+//Choix de la position
 Coord choix_position(int mode, char * LOG);
+
+//Choix des parametres
+Param choix_param(int mode, char * LOG);
+
+//Choix Tmax
+void choix_Tmax(float * Tmax);
+
+//Choix dt
+void choix_dt(float * dt);
 
 int lire_int(float * d);
 
@@ -30,5 +39,3 @@ int lire_chaine(char * s);
 
 int chance_d(double * lf, char * c);
 
-//Choix du mode
-void choix_mode(int * mode, char * LOG);
