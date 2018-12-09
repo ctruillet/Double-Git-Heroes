@@ -29,3 +29,5 @@ Param setParamRossler(Param param, double A, double B, double C);
 void get_Param_Lorenz(Param param, double *B, double *P, double *S);
 void get_Param_VanDerPol(Param param, double *K, double *M, double *B, double *S, double *P, double *Q);
 void get_Param_Rossler(Param param, double *A, double *B, double *C);
+
+Param choix_param(int mode, char * LOG);
