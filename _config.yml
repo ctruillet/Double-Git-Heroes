@@ -1,5 +1,9 @@
 theme: jekyll-theme-slate
 gem "github-pages", group: :jekyll_plugins
+show_downloads: true
 title: Projet C
 description: Modélisation de la trajectoire d'un point 
-show_downloads: true
+
+plugins:
+  - jekyll-sitemap
+ 
