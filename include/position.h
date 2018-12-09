@@ -8,8 +8,8 @@
 #endif
 	
 /*
-Derniere modification : 2018-12-02 17:43:52
-Par : Clement
+Derniere modification : 2018-12-09 10:45:34
+Par : Valentin
 */
 
 
@@ -40,5 +40,5 @@ Coord position_next_VanDerPol(Coord point, Param param, double dt);
 //Calcul de la nouvelle position - Attracteur de Rössler
 Coord position_next_Rossler(Coord point, Param param, double dt);
 
-//definie la position initiale
+//Choix de la position initiale
 Coord choix_position(int mode, char * LOG);

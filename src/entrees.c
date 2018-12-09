@@ -13,14 +13,14 @@
 #define TMIN 10
 
 /*
-Derniere modification : 2018-12-06 
+Derniere modification : 2018-12-09 10:44:21
 Par : Valentin
 */
 
-int lireFinL(){
+int lireFinL(){//lit la fin de la ligne aprèes une saisie
 	char c=getchar();
 	int i=0;
-	while(c!='\n'){
+	while(c!='\n'){ //tant que la saisie n'a pas été entièrement consommée
 		c=getchar();
 		i++;
 	}
@@ -29,16 +29,18 @@ int lireFinL(){
 
 void vide_buffer(){
     int c = 0;
-    while(c != '\n' && c != EOF){
+    while(c != '\n' && c != EOF){//tant que la saisie n'a pas été entièrement consommée
         c = getchar();
     }
 }
 
+
+//lecture sécurisée en fonction du format attendue 
 int lire_format(const char * c, void * n){
 	int lu=scanf(c, n);
 	int nb=lireFinL();
 	
-	if(lu!=1 || nb>0){
+	if(lu!=1 || nb>0){ //si le scanf detecte une erreur ou si la ligne n'est pas entierement consommée
 		return 1;
 	}
 	else{
@@ -46,9 +48,10 @@ int lire_format(const char * c, void * n){
 	}
 }
 
-int lire_int(float * d){
+
+int lire_int(int * d){
 	const char * c="%d";
-	if(lire_format(c, d)==1){
+	if(lire_format(c, d)==1){//si il y a une erreur de lecture
 		return 1;
 	}
 	return 0;
@@ -56,13 +59,13 @@ int lire_int(float * d){
 
 int lire_float(float * f){
 	const char * c="%f";
-	if(lire_format(c, f)==1){
+	if(lire_format(c, f)==1){//si il y a une erreur de lecture
 		return 1;
 	}
 	return 0;
 }
 
-int lire_double(double * lf){
+int lire_double(double * lf){//si il y a une erreur de lecture
 	const char * c="%lf";
 	if(lire_format(c, lf)==1){
 		return 1;
@@ -72,20 +75,20 @@ int lire_double(double * lf){
 
 int lire_chaine(char * s){
 	const char * c="%s";
-	if(lire_format(c, s)==1){
+	if(lire_format(c, s)==1){//si il y a une erreur de lecture
 		return 1;
 	}
 	return 0;
 }
 
-
+//octroie de nouvelles chances de saisie lorque l'utilisatuer se trompe sur le format d'un double
 int chance_d(double * lf, char * c){
 	int ch;
-	printf("%s",c);
-	for(ch=0; lire_double (lf)==0 && ch<CHANCE; ch++){
-		printf("%s",c);
+	printf("%s ",c);
+	for(ch=0; lire_double (lf)==1 && ch<CHANCE; ch++){//tant que l'utilisateur se trompe et a des essais
+		printf("%s ",c);
 	}
-	if(ch>=CHANCE){
+	if(ch>=CHANCE){//si l'utilisateur a consommé toutes ses chances
 		return 1;
 	}
 	return 0;
@@ -100,7 +103,7 @@ void choix_dt(float * dt){
     printf("\n\t dt min = 0.0005s et dt max = 0.01s.\n");
 
     printf("dt : ");
-
+	
     while(lire_float(dt)==1 && ch<CHANCE){
 		ch++;
 		printf("dt : ");
@@ -116,180 +119,7 @@ void choix_dt(float * dt){
     printf("\n\t-> dt = %.4fs \n",(*dt));
 }
 
-//Fonction du choix des parametres
-Param choix_param(int mode, char * LOG){ 
-    Param parameters;
-    int defaut = 1;
-    double B=0, P=0, S=0;
-    double K=0, M=0, Q=0;
-    double A=0, C=0;
-	int marque=0;
 
-    printf("\n\nRentrons un peu plus dans les détails et choisissons les parametres.\n");
-    printf("Voulez-vous les parametres par défaut ?");
-    printf("\n\t 0. Non ! J'aime choisir mon mode de vie.");
-    printf("\n\t 1. Oui ! J'aurais de plus belles courbes.\n");
-    scanf("%d",&defaut);
-
-    switch(defaut){
-        case 0:
-            w_log(LOG, "Choix des parametres."); //Ecriture dans le log
-            printf("\n\nEntrez les parametres sous leurs formes décimales");
-
-            switch(mode){
-
-                case 0: //Lorenz
-                    printf("\"ß ρ σ\"\n");
-                    scanf("%lf %lf %lf",&B,&P,&S);
-                    printf("\n\t-> B=%f P=%f S=%f\n",B,P,S);
-                    parameters = setParamLorenz(parameters, B, P, S); // On remplit parameters avec les parametres entrés
-
-                    break;
-
-                case 1: //Van Der Pol
-                    printf("\"K M B S P Q\"\n");
-                    scanf("%lf %lf %lf %lf %lf %lf",&K,&M,&B,&S,&P,&Q); 
-                    printf("\n\t-> K=%f M=%f B=%f S=%f P=%f Q=%f\n",K,M,B,S,P,Q);
-
-                    parameters = setParamVanDerPol(parameters, K,M,B,S,P,Q); // On remplit parameters avec les parametres entrés
-                    break;
-
-                case 2: //Rossler        
-                    printf("\"A B C\"\n");
-                    scanf("%lf %lf %lf",&A,&B,&C);
-                    printf("\n\t-> A=%f B=%f C=%f\n",A,B,C);
-
-                    parameters = setParamRossler(parameters, A,B,C); // On remplit parameters avec les parametres entrés
-                    break;
-                
-                default:
-                    //Si on on etrangement aucun mode choisi, ce qui normalement ne devrais jamais arriver, mais on ne sait jamais (oui ce commentaire est trop long)
-                    w_log(LOG, "[ERROR] Aucun mode choisi."); 
-                    break;
-            }
-        break;
-
-        case 1: //Parametres par défaut
-            w_log(LOG, "Choix des parametres par défaut."); //Ecriture dans le log
-
-            switch(mode){
-                case 0: //Lorenz
-					B = 8/3;
-					P = 28;
-					S = 10;
-                    parameters = setParamLorenz(parameters, B, P, S); // On remplit parameters avec les parametre par defaut
-                    printf("\n\t-> ß=8/3 ρ=28 σ=10\n");
-                    break;
-
-                case 1: //Van Der Pol
-                    K=0.02;
-					M=4;
-					B=0.2;
-					S=0.2;
-					P=10;
-					Q=0.1;
-					parameters = setParamVanDerPol(parameters, K,M,B,S,P,Q);
-                    printf("\n\t-> K=0.02 M=4 B=0.2 S=0.2 P=10 Q=0.1\n");
-                    break;
-
-                case 2: //Rossler        
-					A = 0.2;
-					B=0.2;
-					C=5.7;
-					parameters = setParamRossler(parameters, A,B,C); // On remplit parameters avec les parametres
-                    printf("\n\t-> A=0.2 B=0.2 C=5.7\n");
-                    break;
-                
-                default:
-                    //Si on a etrangement aucun mode choisi, ce qui normalement ne devrais jamais arriver, mais on ne sait jamais (oui ce commentaire est trop long)
-                    w_log(LOG, "[ERROR] Aucun mode choisi."); 
-                    break;
-            }
-
-            break;
-
-        default: //Choix inexistant, on ecrit une erreur et on met les parametres par défaut.
-            w_log(LOG, "[ERROR] User wants a non-binary system."); 
-
-            switch(mode){
-                case 0: //Lorenz
-                    B = 8/3;
-					P = 28;
-					S = 10;
-                    parameters = setParamLorenz(parameters, B, P, S); // On remplit parameters avec les parametre
-                    printf("\n\t-> B=8/3 P=28 S=10\n");
-                    break;
-
-                case 1: //Van Der Pol
-                    K=0.02;
-					M=4;
-					B=0.2;
-					S=0.2;
-					P=10;
-					Q=0.1;
-					parameters = setParamVanDerPol(parameters, K,M,B,S,P,Q); // On remplit parameters avec les parametres
-                    printf("\n\t-> K=0.02 M=4 B=0.2 S=0.2 P=10 Q=0.1\n");
-                    break;
-
-                case 2: //Rossler        
-                    A = 0.2;
-					B=0.2;
-					C=5.7;
-					parameters = setParamRossler(parameters, A,B,C); // On remplit parameters avec les parametres
-                    printf("\n\t-> A=0.2 B=0.2 C=5.7\n");
-                    break;
-                
-                default:
-                    //Si on on etrangement aucun mode choisi, ce qui normalement ne devrais jamais arriver, mais on ne sait jamais (oui ce commentaire est trop long)
-                    w_log(LOG, "[ERROR] Aucun mode choisi."); 
-                    break;
-            }
-
-            break;
-    }
-    return parameters;
-}
-
-//Choix du mode
-void choix_mode(int * mode, char * LOG){
-    //Fonction de présentation du projet
-    //En bref, un empilement de printf
-
-
-    printf("\n===============================================================\n");
-    printf("================ Modélisation de Trajectoires =================\n");
-    printf("===============================================================\n\n\n");
-    printf("Bienvenue sur ce projet de modélisation de trajectoire d'un point.\n\n");
-    printf("Sont proposés ici, trois attracteurs étranges : \n");
-    printf("\t 0. Attracteur de Lorenz\n");
-    printf("\t 1. Attracteur de Van Der Pol\n");
-    printf("\t 2. Attracteur de Rössler\n");
-    printf("\nSelectionnez l'attracteur souhaité en entrant son numéro associé (Par défaut 0).\n");
-    
-    scanf("%d",mode);
-
-    switch((*mode)){
-        case 0:
-            w_log(LOG, "Choix de l'attracteur de Lorenz");
-            printf("\n\t-> Vous avez choisi l'attracteur de Lorenz");
-            break;
-        case 1:
-            w_log(LOG, "Choix de l'attracteur de Van Der Pol");
-            printf("\n\t-> Vous avez choisi l'attracteur de  Van Der Pol");
-            break;
-        case 2:
-            w_log(LOG, "Choix de l'attracteur de Rössler");
-            printf("\n\t-> Vous avez choisi l'attracteur de Rössler");
-            break;
-        default:
-            w_log(LOG, "Choix par défaut");
-            (*mode) = 0;
-            break;
-    }
-
-    //Vider le buffer
-    vide_buffer();
-}
 
 void choix_Tmax(float * Tmax){
 	int ch = 0;
@@ -314,68 +144,41 @@ void choix_Tmax(float * Tmax){
     printf("\n\t-> Tmax = %.2fs",(*Tmax));
 }
 
-//Choix de la position
-Coord choix_position(int mode, char * LOG){
-    double x,y,z;
-    int defaut = 1;
 
-    // On demande d'abord si on veut les valeurs par défaut ou non
-    printf("\n\nIl est maintenant temps de selectionner la position initiale.\n");
-    printf("\t 0. Je suis un(e) aventurier(e) et je veux explorer mon attracteur ! (choix de la position initiale)\n");
-    printf("\t 1. J'aime rester dans les sentiers battus (position initiale par défaut)\n");
-    scanf("%d",&defaut);
+//Choix du mode
+void choix_mode(int * mode, char * LOG){
+    //Fonction de présentation du projet
+    //En bref, un empilement de printf
 
-    vide_buffer(); //on vide le buffer
 
-    switch(defaut){
-        case 0: // Cas choix de la position
-            w_log(LOG, "Choix de la position initiale."); //Ecriture dans le log
+    printf("\n===============================================================\n");
+    printf("================ Modélisation de Trajectoires =================\n");
+    printf("===============================================================\n\n\n");
+    printf("Bienvenue sur ce projet de modélisation de trajectoire d'un point.\n\n");
+    printf("Sont proposés ici, trois attracteurs étranges : \n");
+    printf("\t 0. Attracteur de Lorenz\n");
+    printf("\t 1. Attracteur de Van Der Pol\n");
+    printf("\t 2. Attracteur de Rössler\n");
+    printf("\nSelectionnez l'attracteur souhaité en entrant son numéro associé (Par défaut 0).\n");
+    
+    lire_int(mode);
 
-            printf("\nEntrez la position initiale dans le format \"x y z\"\n");
-            scanf("%lf %lf %lf",&x,&y,&z);
-            printf("\n\t-> Position initiale : x=%.2f y=%.2f z=%.2f\n",x,y,z);
-
-            vide_buffer(); //on vide le buffer
-
-        break;
-
-        case 1: //Cas valeur par défaut
-            w_log(LOG, "Position initiale par défaut.");
-
-            switch(mode){
-                case 0: //Lorenz
-                    x = 1;
-                    y = 2;
-                    z = 3;
-                    printf("\n\t-> Position initiale : x=1 y=2 z=3\n");
-                    break;
-
-                case 1: //Van Der Pol
-                    x = 0.2;
-                    y = 0.2;
-                    z = 0.2;
-                    printf("\n\t-> Position initiale : x=0.1 y=0.1 z=0.1\n");
-                    break;
-
-                case 2: //Rossler
-                    x = 0;
-                    y = 0;
-                    z = 0;
-                    printf("\n\t-> Position initiale : x=0 y=0 z=0\n");
-                    break;
-            }
-
+    switch((*mode)){
+        case 0:
+            w_log(LOG, "Choix de l'attracteur de Lorenz");
+            printf("\n\t-> Vous avez choisi l'attracteur de Lorenz");
             break;
-
+        case 1:
+            w_log(LOG, "Choix de l'attracteur de Van Der Pol");
+            printf("\n\t-> Vous avez choisi l'attracteur de  Van Der Pol");
+            break;
+        case 2:
+            w_log(LOG, "Choix de l'attracteur de Rössler");
+            printf("\n\t-> Vous avez choisi l'attracteur de Rössler");
+            break;
         default:
-            w_log(LOG, "Position nulle choisie");
-            x = 0;
-            y = 0;
-            z = 0;
-            printf("\n\t-> Position initiale : x=0 y=0 z=0\n");
+            w_log(LOG, "Choix par défaut");
+            (*mode) = 0;
             break;
     }
-
-    //on renvoie la structure Coord remplie avec les parametres choisit
-    return new_coord(0, x, y, z);
 }

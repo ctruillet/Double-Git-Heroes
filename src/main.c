@@ -14,21 +14,23 @@ Par : Clement
 
 int main(int argc, char *argv[]){
 	//Déclaration des variables
-	char LOG[128]; 								//Nom du fichier .log 
+	char LOG[128]; 										//Nom du fichier .log 
 	const char DATA[128] = "../data/position.dat"	;	//Nom du fichier contenant les positions
-	int mode;
+	int mode;											//Permet de voir quel systeme dynamique est selectionné
 
 	Param parameters; //Parametres
 
-	float Tmax;
-	float dt;	
+	float Tmax; 	//Variable de Temps d'arrêt de calcul
+	float dt;		//Variable d'increment de temps
 
 	/*Initialisation
 	* 	Création du fichier .log
 	*	Initialisation du fichier lorentz.dat (situé dans ./data/)
 	*	
 	*	Entrées
+	*		Systéme dynamique
 	*		Position initiale
+	* 		Tmax
 	*		dt
 	*		parametres
 	*/
@@ -47,18 +49,19 @@ int main(int argc, char *argv[]){
 
 	parameters = choix_param(mode, LOG);//Entrée des parametres
 
-	w_log(LOG,"Fin de la phase d'Initialisation.");
+	w_log(LOG,"Fin de la phase d'Initialisation."); //Fin de phase -> ecriture dans log
 	
 	
 	/*Calculs
+	*	Ouverture du fichier position.dat
 	*	Calcul des nouvelles positions
-	*	Stockage dans lorentz.dat
+	*	Stockage dans position.dat
+	*	Fermeture du fichier position.dat
 	*/
 	
 	
-	w_log(LOG,"Début de la phase de Calcul.");
-
-	printf("\n\t Calcul de %.0f positions ...\n",Tmax/dt);
+	w_log(LOG,"Début de la phase de Calcul."); 				//Début de phase -> ecriture dans log
+	printf("\n\t Calcul de %.0f positions ...\n",Tmax/dt);	//Affichage de nombre de positions a calculer, inutile donc indispensable
 	
 	FILE* fichier = NULL;
 
@@ -93,7 +96,7 @@ int main(int argc, char *argv[]){
     }
 	
 	
-	w_log(LOG,"Fin de la phase de Calcul.");
+	w_log(LOG,"Fin de la phase de Calcul.");	//Fin de phase -> ecriture dans log
 	
 	
 	/*Affichage
@@ -102,7 +105,7 @@ int main(int argc, char *argv[]){
 	
 	trace_courbe(mode,LOG);
 
-	w_log(LOG,"FIN.");
+	w_log(LOG,"FIN."); //Fin de phase -> ecriture dans log
 	
 
 	return(0);

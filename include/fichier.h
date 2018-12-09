@@ -2,6 +2,11 @@
  * librairie fichier.h
  */
 
+/*
+Derniere modification : 2018-12-06 10:56:26
+Par : Clement
+*/
+
 #ifndef __POSITION_H__
 	#include "position.h"
 #endif
