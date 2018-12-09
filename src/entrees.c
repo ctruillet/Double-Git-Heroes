@@ -17,7 +17,7 @@ Derniere modification : 2018-12-09 10:44:21
 Par : Valentin
 */
 
-int lireFinL(){//lit la fin de la ligne aprèes une saisie
+int lireFinL(){//lit la fin de la ligne après une saisie & vider le buffer
 	char c=getchar();
 	int i=0;
 	while(c!='\n'){ //tant que la saisie n'a pas été entièrement consommée
@@ -25,13 +25,6 @@ int lireFinL(){//lit la fin de la ligne aprèes une saisie
 		i++;
 	}
 	return(i);
-}
-
-void vide_buffer(){
-    int c = 0;
-    while(c != '\n' && c != EOF){//tant que la saisie n'a pas été entièrement consommée
-        c = getchar();
-    }
 }
 
 

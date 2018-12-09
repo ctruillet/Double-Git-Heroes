@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
 
 	/*Initialisation
 	* 	Création du fichier .log
-	*	Initialisation du fichier lorentz.dat (situé dans ./data/)
+	*	Initialisation du fichier position.dat (situé dans ./data/)
 	*	
 	*	Entrées
 	*		Systéme dynamique
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
 	
 	
 	crea_log(LOG); 				//Création du fichier log
-	init_fichier(DATA,LOG);		//Création du fichier lorentz.dat
+	init_fichier(DATA,LOG);		//Création du fichier position.dat
 	
 	choix_mode(&mode,LOG); //Choix du mode;
 

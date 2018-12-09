@@ -116,7 +116,7 @@ Coord choix_position(int mode, char * LOG){
     printf("\t 1. J'aime rester dans les sentiers battus (position initiale par défaut)\n");
     scanf("%d",&defaut);
 
-    vide_buffer(); //on vide le buffer
+    lireFinL(); //on vide le buffer
 
     switch(defaut){
         case 0: // Cas choix de la position
@@ -126,7 +126,7 @@ Coord choix_position(int mode, char * LOG){
             scanf("%lf %lf %lf",&x,&y,&z);
             printf("\n\t-> Position initiale : x=%.2f y=%.2f z=%.2f\n",x,y,z);
 
-            vide_buffer(); //on vide le buffer
+            lireFinL(); //on vide le buffer
 
         break;
 

@@ -15,7 +15,7 @@ $(EXEC): $(OBJ) $(INCLUDE)/*.h
 	$(GCC) $(CFLAGS) -o $(EXEC) $(OBJ) -I$(INCLUDE) -L$(LIB) $(LIBFLAGS)
 	chmod u+rx bin/*.sh
 	mv $(EXEC) $(EXEC_F)
-	rm $(OBJ) 
+	mv src/*.o lib
 
 entrees.o: entrees.c $(INCLUDE)/entrees.h
 	$(GCC) $(CFLAGS) -o entrees.o -c ./src/entrees.c	
@@ -40,4 +40,4 @@ main.o: main.c $(INCLUDE)/main.h
 	
 clean:
 	rm $(EXEC_F)
-	rm src/*.o
+	rm lib/*.o

@@ -12,7 +12,7 @@ Par : Valentin
 */
 
 //Vider le buffer
-void vide_buffer();
+int lireFinL();
 
 //Choix du mode
 void choix_mode(int * mode, char * LOG);
