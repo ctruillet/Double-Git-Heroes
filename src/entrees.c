@@ -13,7 +13,7 @@
 #define TMIN 10
 
 /*
-Derniere modification : 2018-12-06 
+Derniere modification : 2018-12-09 10:44:21
 Par : Valentin
 */
 
@@ -145,3 +145,40 @@ void choix_Tmax(float * Tmax){
 }
 
 
+//Choix du mode
+void choix_mode(int * mode, char * LOG){
+    //Fonction de présentation du projet
+    //En bref, un empilement de printf
+
+
+    printf("\n===============================================================\n");
+    printf("================ Modélisation de Trajectoires =================\n");
+    printf("===============================================================\n\n\n");
+    printf("Bienvenue sur ce projet de modélisation de trajectoire d'un point.\n\n");
+    printf("Sont proposés ici, trois attracteurs étranges : \n");
+    printf("\t 0. Attracteur de Lorenz\n");
+    printf("\t 1. Attracteur de Van Der Pol\n");
+    printf("\t 2. Attracteur de Rössler\n");
+    printf("\nSelectionnez l'attracteur souhaité en entrant son numéro associé (Par défaut 0).\n");
+    
+    lire_int(mode);
+
+    switch((*mode)){
+        case 0:
+            w_log(LOG, "Choix de l'attracteur de Lorenz");
+            printf("\n\t-> Vous avez choisi l'attracteur de Lorenz");
+            break;
+        case 1:
+            w_log(LOG, "Choix de l'attracteur de Van Der Pol");
+            printf("\n\t-> Vous avez choisi l'attracteur de  Van Der Pol");
+            break;
+        case 2:
+            w_log(LOG, "Choix de l'attracteur de Rössler");
+            printf("\n\t-> Vous avez choisi l'attracteur de Rössler");
+            break;
+        default:
+            w_log(LOG, "Choix par défaut");
+            (*mode) = 0;
+            break;
+    }
+}

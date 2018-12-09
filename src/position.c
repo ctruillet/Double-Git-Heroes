@@ -6,8 +6,8 @@
 #include "../include/entrees.h"
 
 /*
-Derniere modification : 2018-12-02 17:28:26
-Par : Clement
+Derniere modification : 2018-12-09 10:43:57
+Par : Valentin
 */
 
 //Structure de la position
@@ -109,35 +109,21 @@ Coord position_next_Rossler(Coord point, Param param, double dt){
 Coord choix_position(int mode, char * LOG){
     double x,y,z;
     int defaut = 1;
-    int marque=0;
 
     // On demande d'abord si on veut les valeurs par défaut ou non
     printf("\n\nIl est maintenant temps de selectionner la position initiale.\n");
     printf("\t 0. Je suis un(e) aventurier(e) et je veux explorer mon attracteur ! (choix de la position initiale)\n");
     printf("\t 1. J'aime rester dans les sentiers battus (position initiale par défaut)\n");
-    lire_int(&defaut);
+    scanf("%d",&defaut);
+
+    vide_buffer(); //on vide le buffer
 
     switch(defaut){
         case 0: // Cas choix de la position
             w_log(LOG, "Choix de la position initiale."); //Ecriture dans le log
 
-            printf("\nEntrez la position initiale\n");
-            if (chance_d(&x, "x?\n")==0){
-						if (chance_d(&y, "y?\n")==0){
-							if (chance_d(&z, "z?\n")==0){
-								marque = 1;
-							}
-						}
-					}
-					if(marque==0){
-						w_log(LOG, "reponse <position> invalide");
-						w_log(LOG, "Position nulle choisie");
-                        x = 0;
-                        y = 0;
-                        z = 0;
-                        printf("\n\t-> Position initiale : x=0 y=0 z=0\n");
-						
-					}
+            printf("\nEntrez la position initiale dans le format \"x y z\"\n");
+            scanf("%lf %lf %lf",&x,&y,&z);
             printf("\n\t-> Position initiale : x=%.2f y=%.2f z=%.2f\n",x,y,z);
 
             vide_buffer(); //on vide le buffer
